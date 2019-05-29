@@ -1,0 +1,612 @@
+﻿#pageone {
+    height: 100%
+}
+
+#myPanelRtdo {
+    width: 100%;
+}
+
+#myPanel {
+    background-color: rgba(255, 255, 255, 0.5)
+}
+#loadingSaturacion {
+    position: absolute;
+    right: 25%;
+    width: 50%;
+    top: 40%;
+    z-Index: 999;
+    visibility: hidden; 
+}
+#procesando {
+    position: absolute;
+    right: 50%;
+    top: 50%;
+    z-Index: 999;
+    display: none;
+}
+
+body {
+    font-family: arial
+}
+
+.ui-panel-inner {
+    padding: 0.75em
+}
+
+.ui-page-theme-a .ui-bar-inherit {
+    text-shadow: 0 0
+}
+
+.ui-content {
+    height: 100%;
+    padding: 0
+}
+
+#backButton {
+    position: absolute;
+    left: 18px;
+    top: 10px;
+    border-radius: 5px;
+    background-color: rgba(7, 41, 101, 0.85);
+    padding: 2px;
+    width: 40px;
+    height: 30px;
+    color: #000;
+    z-index: 40
+}
+
+#herramientas {
+    position: absolute;
+    left: 18px;
+    top: 10px;
+    color: #000;
+    z-index: 40;
+    border-radius: 5px;
+    background-color: rgba(7, 41, 101, 0.85);
+    padding: 2px;
+    width: 40px;
+    height: 30px;
+    color: #000
+}
+
+#search {
+    display: block;
+    position: absolute;
+    z-index: 40;
+    top: 65px;
+    left: 18px
+}
+
+#tituloVisor {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 30;
+    text-shadow: 0 0 3px #000, 0 0 5px #000;
+    color: #000 !important;
+    font-weight: 500;
+    font-size: 1em
+}
+
+    #tituloVisor:hover {
+        font-size: 1.8em;
+        cursor: pointer;
+    }
+
+#ParcelasSel, #gps {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    top: 10px;
+    /*left: 25%;*/
+    z-index: 30;
+    text-shadow: 0 0 3px #000, 0 0 5px #000;
+    /*background-color: rgba(22, 22, 22, 0.54);*/
+    color: #fff;
+    font-weight: 700;
+    font-size: 1em
+}
+
+#HomeButton {
+    position: absolute;
+    top: 110px;
+    left: 18px;
+    z-index: 30
+}
+
+.HomeButton .home {
+    width: 40px;
+    background-color: rgba(7, 41, 101, 0.85);
+    border: 1px solid #ddd;
+}
+
+
+
+#posicion {
+    position: absolute;
+    top: 150px;
+    left: 18px;
+    z-index: 40;
+    border-radius: 5px;
+    background-color: rgba(7, 41, 101, 0.85);
+    padding: 2px;
+    width: 40px;
+    height: 30px;
+    color: #000
+}
+
+#mapaBase {
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
+    z-Index: 30
+}
+
+#escala {
+    position: absolute;
+    right: 80px;
+    bottom: 15px;
+    z-Index: 10;
+    text-shadow: 0 0 3px #000, 0 0 5px #000;
+    color: #fff !important;
+    font-weight: 700;
+    font-size: 1em
+}
+
+    #escala:hover {
+        font-size: 1.5em;
+    }
+
+.arcgisSearch .searchBtn {
+    background-color: rgba(7, 41, 101, 0.85);
+    color: white;
+    border-color: #ddd
+}
+
+
+
+.esriSimpleSliderTL {
+    display: none
+}
+
+
+.ui-collapsible-content {
+    background-color: white
+    /*opacity: .6;*/
+}
+
+.ui-field-contain, .ui-mobile fieldset.ui-field-contain {
+    padding: 0
+}
+
+.dijitTitlePane {
+    display: block;
+    overflow: hidden;
+    background-color: #C0C0C0;
+    color: #000000;
+    font-weight: bold;
+    font-size: 80%
+}
+
+.details {
+    font-size: 14px;
+    font-weight: 600;
+    padding-bottom: 20px
+}
+
+button {
+    margin: 2px;
+    cursor: pointer
+}
+
+/*--------------------------------------------------leyenda------------------------------------------*/
+
+.esriLegendLayerLabel, .esriLegendLayer {
+    font-family: 'Arial';
+    font-size: 12px;
+    color: black
+}
+
+.esriLegendService img {
+    width: 30px
+}
+
+.esriLegendServiceLabel {
+    display: none
+}
+
+/*--------------------------------------------------Loading------------------------------------------*/
+/* Second Loadin Circle */
+.circle {
+    background-color: rgba(0,0,0,0);
+    border: 5px solid rgba(0,183,229,0.9);
+    opacity: .9;
+    border-right: 5px solid rgba(0,0,0,0);
+    border-left: 5px solid rgba(0,0,0,0);
+    border-radius: 30px;
+    width: 30px;
+    height: 30px;
+    margin: 0 auto;
+    -moz-animation: spinPulse 1s infinite ease-in-out;
+    -webkit-animation: spinPulse 1s infinite linear
+}
+
+.circle1 {
+    background-color: rgba(0,0,0,0);
+    border: 5px solid rgba(0,183,229,0.9);
+    opacity: .9;
+    border-left: 5px solid rgba(0,0,0,0);
+    border-right: 5px solid rgba(0,0,0,0);
+    border-radius: 30px;
+    box-shadow: 0 0 15px #2187e7;
+    width: 10px;
+    height: 10px;
+    margin: 0 auto;
+    position: relative;
+    top: -30px;
+    -moz-animation: spinoffPulse 1s infinite linear;
+    -webkit-animation: spinoffPulse 1s infinite linear
+}
+
+@-moz-keyframes spinPulse {
+    0% {
+        -moz-transform: rotate(160deg);
+        opacity: 0;
+        box-shadow: 0 0 1px #2187e7;
+    }
+
+    50% {
+        -moz-transform: rotate(145deg);
+        opacity: 1;
+    }
+
+    100% {
+        -moz-transform: rotate(-320deg);
+        opacity: 0;
+    }
+}
+
+@-moz-keyframes spinoffPulse {
+    0% {
+        -moz-transform: rotate(0deg);
+    }
+
+    100% {
+        -moz-transform: rotate(360deg);
+    }
+}
+
+@-webkit-keyframes spinPulse {
+    0% {
+        -webkit-transform: rotate(160deg);
+        opacity: 0;
+        box-shadow: 0 0 1px #2187e7;
+    }
+
+    50% {
+        -webkit-transform: rotate(145deg);
+        opacity: 1;
+    }
+
+    100% {
+        -webkit-transform: rotate(-320deg);
+        opacity: 0;
+    }
+}
+
+@-webkit-keyframes spinoffPulse {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+.ui-select .ui-btn select {
+    font-size: 1em
+}
+
+/*--------------------------------------------------basemapgallery------------------------------------------*/
+
+.esriBasemapGalleryThumbnail {
+    height: 5em;
+    width: 7em;
+}
+
+.esriBasemapGalleryLabelContainer {
+    font-size: 1em;
+    font-weight: 600;
+    text-shadow: 0 0 3px #ffffff, 0 0 5px #ffffff
+}
+/*--------------------------------------------------acercar a------------------------------------------*/
+#divlocalizar {
+    margin: auto;
+    width: 50%
+}
+
+.localizacion {
+    background-size: 16px 16px;
+    background-position: center center;
+    background-repeat: no-repeat;
+    -webkit-border-radius: 1em;
+    border-radius: 1em;
+    width: 75%;
+}
+
+@media (min-width: 28em) {
+    .ui-field-contain > label, .ui-field-contain .ui-controlgroup-label, .ui-field-contain > .ui-rangeslider > label {
+        float: left;
+        width: 27%;
+        margin: .5em 2% 0 0;
+    }
+}
+
+@media (min-width: 28em) {
+    .ui-field-contain > label ~ [class*=ui-], .ui-field-contain .ui-controlgroup-controls {
+        float: left;
+        width: 70%;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+}
+
+.progress-bar span {
+    display: inline-block;
+    padding: 5px;
+    border-radius: 3px;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, .5) inset;
+    transition: width .4s ease-in-out;
+    width: 95%;
+    color: white;
+    font-weight: 600;
+    text-shadow: none;
+}
+
+.blue span {
+    background-color: #2187e7;
+}
+
+.stripes span {
+    background-size: 30px 30px;
+    background-image: linear-gradient(135deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent);
+    animation: animate-stripes 1s linear infinite;
+}
+
+@keyframes animate-stripes {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 60px 0;
+    }
+}
+
+
+.bounceIn {
+    -webkit-animation-name: bounceIn;
+    animation-name: bounceIn;
+    -webkit-animation-duration: .75s;
+    animation-duration: .75s;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    animation-iteration-count: 1;
+}
+
+@-webkit-keyframes bounceIn {
+    0%, 20%, 40%, 60%, 80%, 100% {
+        -webkit-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+        transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+    }
+
+    0% {
+        opacity: 0;
+        -webkit-transform: scale3d(.3, .3, .3);
+        transform: scale3d(.3, .3, .3);
+    }
+
+    20% {
+        -webkit-transform: scale3d(1.1, 1.1, 1.1);
+        transform: scale3d(1.1, 1.1, 1.1);
+    }
+
+    40% {
+        -webkit-transform: scale3d(.9, .9, .9);
+        transform: scale3d(.9, .9, .9);
+    }
+
+    60% {
+        opacity: 1;
+        -webkit-transform: scale3d(2.03, 2.03, 2.03);
+        transform: scale3d(2.03, 2.03, 2.03);
+    }
+
+    80% {
+        -webkit-transform: scale3d(.97, .97, .97);
+        transform: scale3d(.97, .97, .97);
+    }
+
+    100% {
+        opacity: 1;
+        -webkit-transform: scale3d(1, 1, 1);
+        transform: scale3d(1, 1, 1);
+    }
+}
+
+@keyframes bounceIn {
+    0%, 20%, 40%, 60%, 80%, 100% {
+        -webkit-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+        transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+    }
+
+    0% {
+        opacity: 0;
+        -webkit-transform: scale3d(.3, .3, .3);
+        transform: scale3d(.3, .3, .3);
+    }
+
+    20% {
+        -webkit-transform: scale3d(1.1, 1.1, 1.1);
+        transform: scale3d(1.1, 1.1, 1.1);
+    }
+
+    40% {
+        -webkit-transform: scale3d(.9, .9, .9);
+        transform: scale3d(.9, .9, .9);
+    }
+
+    60% {
+        opacity: 1;
+        -webkit-transform: scale3d(2.03, 2.03, 2.03);
+        transform: scale3d(2.03, 2.03, 2.03);
+    }
+
+    80% {
+        -webkit-transform: scale3d(.97, .97, .97);
+        transform: scale3d(.97, .97, .97);
+    }
+
+    100% {
+        opacity: 1;
+        -webkit-transform: scale3d(1, 1, 1);
+        transform: scale3d(1, 1, 1);
+    }
+}
+
+#botoneraEdicion {
+    margin: 10px 2px;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: row;
+    -moz-flex-direction: row;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    max-width: 100%;
+    height: 60px;
+}
+
+#dialogoPop {
+    margin: 20px;
+    padding: 10px;
+}
+
+#selectorFichero {
+    padding: 0.5em 0px 0.5em 0px;
+    margin: 1em 0 0 0;
+    background-color: #dadada;
+    border-radius: 0.5em;
+}
+
+.botones {
+    width: 70%;
+    margin: 0 auto;
+    clear: left;
+}
+
+/*.ui-mobile label, div.ui-controlgroup-label {
+            font-weight: 400;
+            font-size: 0.8em;
+        }*/
+.ui-field-contain > label ~ [class*=ui-], .ui-field-contain .ui-controlgroup-controls {
+    margin: 0px 0px 1em 2em;
+}
+
+.ui-field-contain, .ui-mobile fieldset.ui-field-contain {
+    display: flex;
+}
+
+
+.esriPopupMobile {
+    font-size: 10px;
+}
+
+    .esriPopupMobile .titlePane {
+        background: rgba(7, 41, 101, 0.85);
+    }
+
+.ui-overlay-a, .ui-page-theme-a, .ui-page-theme-a .ui-panel-wrapper {
+    text-shadow: none;
+}
+
+.esriPopupMobile .sizer {
+    width: 230px;
+}
+
+.esriMobileInfoView {
+    position: absolute;
+    top: 42px;
+    width: 50%;
+    min-width: 250px;
+    height: 80%;
+    background: #fff;
+    /*display: none;*/
+    z-index: 42;
+    opacity: 0.8;
+    overflow: hidden
+}
+
+    .esriMobileInfoView .esriMobilePopupInfoView {
+        display: none;
+        position: absolute;
+        top: 42px;
+        overflow: hidden;
+        width: 50%;
+        min-width: 250px;
+        height: 200px;
+        background: #fff;
+        z-index: 42;
+        padding-bottom: 30px;
+        padding-left: 2px;
+    }
+
+
+.esriMobileNavigationBar .esriMobileNavigationItem.center {
+    display: block;
+    color: white;
+    font-size: 1em;
+    font-weight: 600;
+    margin: 0.6em 32px 0.8em 32px;
+    outline: 0 none !important;
+    overflow: hidden;
+    padding: 0;
+    text-align: left;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 50%;
+    min-width: 250px;
+    height: 200px
+}
+
+.esriMobileNavigationBar {
+    overflow: hidden;
+    /*position: absolute;*/
+    z-index: 41;
+    top: 0;
+    background: rgba(7, 41, 101, 0.85);
+    /*background-color: #639BBC;
+            background-image: -webkit-gradient( linear, left bottom, left top, color-stop(0.25, rgb(10,77,106)), color-stop(0.82, rgb(99,155,188)) );
+            background-image: -moz-linear-gradient( center bottom, rgb(10,77,106) 25%, rgb(99,155,188) 82% );
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#639BBC', endColorstr='#0A4D6A');
+            -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#639BBC', endColorstr='#0A4D6A')";*/
+    width: 50%;
+    min-width: 250px;
+    height: 42px;
+    margin: 0 auto;
+    clear: both;
+    font-family: Helvetica,Arial,sans-serif;
+    display: block
+}
+
+.ovwHighlight {
+    background-color: white !important;
+    border: 3px solid #FF0B0B !important;
+}
