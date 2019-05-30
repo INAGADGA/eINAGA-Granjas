@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.329
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{262852C6-CD72-467D-83FE-5EEB1973A190}") = "eINAGAgranjas", "eINAGAgranjas\eINAGAgranjas.jsproj", "{9E6D4BD9-BC25-4123-BC78-552C15E45A6E}"
+Project("{262852C6-CD72-467D-83FE-5EEB1973A190}") = "eINAGA-Granjas", "eINAGAgranjas\eINAGA-Granjas.jsproj", "{9E6D4BD9-BC25-4123-BC78-552C15E45A6E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

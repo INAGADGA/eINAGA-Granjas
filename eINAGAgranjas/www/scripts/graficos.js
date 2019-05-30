@@ -18,6 +18,9 @@
         }
     };
 
+
+    // addpoint
+
     this.addPoint4326 = function (geometry) {
         var attrs, sym;
         attrs = { "type": "Geodesic" };

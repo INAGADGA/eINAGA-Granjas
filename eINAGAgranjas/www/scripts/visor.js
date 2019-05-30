@@ -83,7 +83,7 @@ function initializeEsriJS() {
             var _widgets = new Widgets();
 
             //rutaServidor = "https://idearagondes.aragon.local:4063/arcgis/rest/services/INAGA";
-            rutaServidor = "https://idearagon.aragon.es/servicios/rest/services/INAGA";
+            //rutaServidor = "https://idearagon.aragon.es/servicios/rest/services/INAGA";
             customExtentAndSR = new esri.geometry.Extent(-300000, 4840000, 120000, 5280000, new esri.SpatialReference({ wkid: 3857 })); //= new esri.geometry.Extent(550000,4400000,825000,4770000, new esri.SpatialReference({wkid:25830}));
             var tituloVisor = "<center><b><font color='white'>Explotaciones Ganaderas</font></b></center>";
             $("#tituloVisor").html(tituloVisor);
