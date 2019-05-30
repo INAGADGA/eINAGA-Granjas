@@ -169,8 +169,8 @@
     };
 
     this.cambiaVisibilidadFiguras = function (nombre, id) {
-        if ($('#' + nombre).is(":checked")) { Capas.visibleFiguras.push("0"); }
-        else { quitaValoresVisibilidad("Figuras", "0"); }
+        if ($('#' + nombre).is(":checked")) { Capas.visibleFiguras.push(id); }
+        else { quitaValoresVisibilidad("Figuras", id); }
         dynamicMSLayerFPA.setVisibleLayers(Capas.visibleFiguras);
     };
 
