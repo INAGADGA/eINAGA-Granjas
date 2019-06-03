@@ -64,13 +64,13 @@
         }, "search");
         var sources = [
             {
-                featureLayer: new esri.layers.FeatureLayer(rutaServidor + "/INAGA_Ambitos/MapServer/3"),
-                searchFields: ["D_MUNI_INE"],
-                displayField: "D_MUNI_INE",
-                exactMatch: false,
-                name: "Municipios",
+                featureLayer: new esri.layers.FeatureLayer(rutaServidor + "/INAGA_Ambitos/MapServer/4"),
+                searchFields: ["D_NUCLEO_I"],
+                displayField: "D_NUCLEO_I",
+                exactMatch: true,
+                name: "Núcleo de población",
                 outFields: ["*"],
-                placeholder: " ",
+                placeholder: "Núcleo de población",
                 maxResults: 6,
                 maxSuggestions: 6,
                 enableSuggestions: true,
@@ -115,8 +115,8 @@
             }];
 
         s.set("sources", sources);
-        s.sources[0].searchExtent = customExtentAndSR;
-        s.sources[1].searchExtent = customExtentAndSR;
+        //s.sources[0].searchExtent = customExtentAndSR;
+        //s.sources[1].searchExtent = customExtentAndSR;
         s.startup();
     };
 

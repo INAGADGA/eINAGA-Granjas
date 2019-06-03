@@ -20,7 +20,7 @@ function generaTextoDescarga(nombre) {
     tabladetalle += "</body></html>";
 
 
-    let options = { documentSize: 'A4', type: 'share', fileName: nombre };
+    var options = { documentSize: 'A4', type: 'share', fileName: nombre };
     pdf.fromData(tabladetalle, options)
         .then(function (stats) { console.log(stats); },
         function (err) { console.log(err); });

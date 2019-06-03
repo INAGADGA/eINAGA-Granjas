@@ -175,27 +175,34 @@ function initializeEsriJS() {
                 }
             });
             map.on("click", function (evt) {
-                if (dom.byId("myonoffswitch").checked) {
-                    map.setInfoWindowOnClick(false);
+                if ($('#myonoffswitch').prop('checked')) {
                     _transformaciones.actualizaCoordsCatastro(evt.mapPoint, evt.layerX, evt.layerY); // layerx, layery);                    
                 }
-                else {
-                    map.infoWindow.resize(300, 300);
-                }
+                // actualiza las variables coordenadas con el último click
                 coordx = evt.mapPoint.x.toFixed(2).replace('.', ',');
                 coordy = evt.mapPoint.y.toFixed(2).replace('.', ',');
             });
 
+            // evento del check de consulta catastro para evitar el evento de onClick (info) y poder seleccionar la coordenada de consulta
+            $("#myonoffswitch").on('change', function () {
+                if ($(this).is(':checked')) {
+                    map.setInfoWindowOnClick(false);
+                } else {
+                    map.setInfoWindowOnClick(true);
+                }
+            });
 
             map.on("update-end", function () {
-                map.setMapCursor("default");
-                domStyle.set(dom.byId("procesando"), "display", "none");
+                _herramientas.cursorxDefecto();
+                //map.setMapCursor("default");                
+                //domStyle.set(dom.byId("procesando"), "display", "none");
                 _transformaciones.dameCoord25830();
                 $("#escala").text("Escala 1:" + Number(map.getScale().toFixed(0)).toLocaleString('es'));
             });
             map.on("update-start", function () {
-                map.setMapCursor("wait");
-                domStyle.set(dom.byId("procesando"), "display", "inline-block");
+                _herramientas.cursorEspera();
+                //map.setMapCursor("wait");
+                //domStyle.set(dom.byId("procesando"), "display", "inline-block");
                 $("#popupNested").popup("close");
             });
             map.on("zoom-end", function () {

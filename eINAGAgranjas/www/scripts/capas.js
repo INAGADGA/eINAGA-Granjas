@@ -1,7 +1,8 @@
-﻿function Capas() {
+﻿﻿var rutaServidor = "https://idearagon.aragon.es/servicios/rest/services/INAGA";
+function Capas() {
     Capas.visibleFiguras = [];
     Capas.visibleGranjas = [0, 1, 2, 4, 5];
-    var rutaServidor = "https://idearagon.aragon.es/servicios/rest/services/INAGA";
+
     // variables staticas
     Capas.fcGranjasProduccion = new esri.layers.FeatureLayer(rutaServidor + "/INAGA_Explotaciones_G/MapServer/0");
     Capas.fcGranjasInagaTram = new esri.layers.FeatureLayer(rutaServidor + "/INAGA_Explotaciones_G/MapServer/1");
@@ -17,7 +18,7 @@
      * Dependencias: tiene que estar incializado el mapa
      */
     this.addCapas2Visor = function () {
-        
+
         var infoTemplate = new esri.InfoTemplate("");
         infoTemplate.setTitle("<b>Recintos Aptos Fertilización");
         infoTemplate.setContent(getTextAtributos);
@@ -34,6 +35,8 @@
                 "</br><b> SALDO_N_KG: </b> " + graphic.attributes.SALDO.toFixed(2);
             return texto;
         }
+
+
         dynamicMSLayerGranjas = new esri.layers.ArcGISDynamicMapServiceLayer(rutaServidor + "/INAGA_Explotaciones_G/MapServer", {
             id: "Granjas",
             outFields: ["*"]
@@ -41,11 +44,11 @@
         dynamicMSLayerGranjas.setVisibility(true);
         dynamicMSLayerGranjas.setInfoTemplates({
             //0: { infoTemplate: new esri.InfoTemplate("Explotaciones REGA (NO Producción)", "${*}") },
-            0: { infoTemplate: new esri.InfoTemplate("Explotaciones REGA </br>(Producción)", "${*}") },
-            1: { infoTemplate: new esri.InfoTemplate("Explotaciones </br>en tramitación en INAGA", "${*}") },
-            2: { infoTemplate: new esri.InfoTemplate("Explotaciones </br>autorizadas sin construir", "${*}") },
-            3: { infoTemplate: new esri.InfoTemplate("Comederos Aves Necrófagas", "${*}") },
-            4: { infoTemplate: new esri.InfoTemplate("Zonas Vulnerables", "${*}") },
+            0: { infoTemplate: new esri.InfoTemplate(getInfotemplate("Explotaciones REGA </br>(Producción)", "<h3>Granja REGA:</h3><b>Codigo:</b> ${CODIGO}<br><b>Explotacion:</b> ${EXPLOTACION}<br><b>Especie:</b> ${ESPECIE}<br><b>Familia:</b> ${FAMILIA}<br><b>TIPO:</b> ${TIPO}<br><b>CAPACIDAD:</b> ${CAPACIDAD}")) },
+            1: { infoTemplate: new esri.InfoTemplate(getInfotemplate("Explotaciones </br>en tramitación en INAGA", "<h3>Granja Tramitación:</h3><b>Codigo:</b> ${CODIGO}<br><b>Explotacion:</b> ${EXPLOTACION}<br><b>Especie:</b> ${ESPECIE}<br><b>Familia:</b> ${FAMILIA}<br><b>TIPO:</b> ${TIPO}<br><b>CAPACIDAD:</b> ${CAPACIDAD}")) },
+            2: { infoTemplate: new esri.InfoTemplate(getInfotemplate("Explotaciones </br>autorizadas sin construir", "<h3>Granja Resuelta:</h3><b>Codigo:</b> ${CODIGO}<br><b>Explotacion:</b> ${EXPLOTACION}<br><b>Especie:</b> ${ESPECIE}<br><b>Familia:</b> ${FAMILIA}<br><b>TIPO:</b> ${TIPO}<br><b>CAPACIDAD:</b> ${CAPACIDAD}")) },
+            3: { infoTemplate: new esri.InfoTemplate(getInfotemplate("Comederos Aves Necrófagas", "<h3>Comederos Aves Necrófagas:</h3><b>MULADAR:</b> ${MULADAR}")) },
+            4: { infoTemplate: new esri.InfoTemplate(getInfotemplate("Zonas Vulnerables", "<h3>Zonas Vulnerables:</h3><b>COD_ZV:</b> ${COD_ZV}<br><b>NOM_ZV:</b> ${NOM_ZV}<br><b>F_DESIGN:</b> ${F_DESIGN}<br><b>SUP_DECL:</b> ${SUP_DECL}<br><b>SUP_KM2:</b> ${SUP_KM2}")) },
             5: { infoTemplate: infoTemplate }
         });
         dynamicMSLayerGranjas.setImageFormat("png32", true);
@@ -57,8 +60,8 @@
         });
         dynamicMSLayerMontes.setVisibility(false);
         dynamicMSLayerMontes.setInfoTemplates({
-            4: { infoTemplate: new esri.InfoTemplate("Montes", "Matricula: ${MATRICULA}<br>Nombre: ${NOMBRE}<br>Titular: ${TITULAR}<br>Tipo: ${DTIPO}") },
-            5: { infoTemplate: new esri.InfoTemplate("Montes Gen", "Matricula: ${MATRICULA}<br>Nombre: ${DENOMINACION}<br>Titular: ${TITULAR}<br>Tipo: ${TIPO}") }
+            4: { infoTemplate: new esri.InfoTemplate(getInfotemplate("Montes", "Matricula: ${MATRICULA}<br>Nombre: ${NOMBRE}<br>Titular: ${TITULAR}<br>Tipo: ${DTIPO}")) },
+            5: { infoTemplate: new esri.InfoTemplate(getInfotemplate("Montes Gen", "Matricula: ${MATRICULA}<br>Nombre: ${DENOMINACION}<br>Titular: ${TITULAR}<br>Tipo: ${TIPO}")) }
         });
         dynamicMSLayerMontes.setImageFormat("png32", true);
         dynamicMSLayerCotos = new esri.layers.ArcGISDynamicMapServiceLayer(rutaServidor + "/INAGA_Cotos_Caza/MapServer", {
@@ -67,8 +70,8 @@
         });
         dynamicMSLayerCotos.setVisibility(false);
         dynamicMSLayerCotos.setInfoTemplates({
-            1: { infoTemplate: new esri.InfoTemplate("Terrenos Cinegéticos", "Matricula: ${MATRICULA}<br>Nombre: ${NOMBRE}<br>Titular: ${TITULAR}<br>Tipo: ${DTIPO}") },
-            2: { infoTemplate: new esri.InfoTemplate("Terrenos Cinegéticos", "Matricula: ${MATRICULA}<br>Nombre: ${NOMBRE}<br>Titular: ${TITULAR}<br>Tipo: ${DTIPO}") }
+            1: { infoTemplate: new esri.InfoTemplate(getInfotemplate("Terrenos Cinegéticos", "Matricula: ${MATRICULA}<br>Nombre: ${NOMBRE}<br>Titular: ${TITULAR}<br>Tipo: ${DTIPO}")) },
+            2: { infoTemplate: new esri.InfoTemplate(getInfotemplate("Terrenos Cinegéticos", "Matricula: ${MATRICULA}<br>Nombre: ${NOMBRE}<br>Titular: ${TITULAR}<br>Tipo: ${DTIPO}")) }
         });
         dynamicMSLayerCotos.setImageFormat("png32", true);
 
@@ -83,15 +86,16 @@
             id: "Figuras",
             outFields: ["*"]
         });
+
         dynamicMSLayerFPA.setInfoTemplates({
-            0: { infoTemplate: new esri.InfoTemplate("HUMEDALES", "CODIGO: ${CODIGO}<br>Nombre: ${DESCRIPCIO}") },
-            1: { infoTemplate: new esri.InfoTemplate("LICS", "CODIGO: ${CODIGO}<br>Nombre: ${DESCRIPCIO}") },
-            2: { infoTemplate: new esri.InfoTemplate("ZEPAS", "CODIGO: ${CODIGO}<br>Nombre: ${DESCRIPCIO}") },
-            3: { infoTemplate: new esri.InfoTemplate("LIG", "CODIGO: ${CODIGO}<br>Nombre: ${DESCRIPCIO}") },
-            4: { infoTemplate: new esri.InfoTemplate("ENP", "CODIGO: ${CODIGO}<br>Nombre: ${DESCRIPCIO}") },
-            5: { infoTemplate: new esri.InfoTemplate("PORN", "CODIGO: ${CODIGO}<br>Nombre: ${DESCRIPCIO}") },
-            6: { infoTemplate: new esri.InfoTemplate("AREAS CRITICAS", "CODIGO: ${CODZONA}<br>Nombre: ${DZONA}") },
-            7: { infoTemplate: new esri.InfoTemplate("APPE", "CODIGO: ${CODIGO}<br>Nombre: ${DESCRIPCIO}") }
+            0: { infoTemplate: new esri.InfoTemplate(getInfotemplate("HUMEDALES", "CODIGO: ${CODIGO}<br>Nombre: ${DESCRIPCIO}")) },
+            1: { infoTemplate: new esri.InfoTemplate(getInfotemplate("LICS", "CODIGO: ${CODIGO}<br>Nombre: ${DESCRIPCIO}")) },
+            2: { infoTemplate: new esri.InfoTemplate(getInfotemplate("ZEPAS", "CODIGO: ${CODIGO}<br>Nombre: ${DESCRIPCIO}")) },
+            3: { infoTemplate: new esri.InfoTemplate(getInfotemplate("LIG", "CODIGO: ${CODIGO}<br>Nombre: ${DESCRIPCIO}")) },
+            4: { infoTemplate: new esri.InfoTemplate(getInfotemplate("ENP", "CODIGO: ${CODIGO}<br>Nombre: ${DESCRIPCIO}")) },
+            5: { infoTemplate: new esri.InfoTemplate(getInfotemplate("PORN", "CODIGO: ${CODIGO}<br>Nombre: ${DESCRIPCIO}")) },
+            6: { infoTemplate: new esri.InfoTemplate(getInfotemplate("AREAS CRITICAS", "CODIGO: ${CODZONA}<br>Nombre: ${DZONA}")) },
+            7: { infoTemplate: new esri.InfoTemplate(getInfotemplate("APPE", "CODIGO: ${CODIGO}<br>Nombre: ${DESCRIPCIO}")) }
         });
         dynamicMSLayerFPA.setVisibleLayers([]);
         dynamicMSLayerFPA.setImageFormat("png32", true);
@@ -189,6 +193,25 @@
                 if (Capas.visibleGranjas[index] !== pos) { listadocapas.push(Capas.visibleGranjas[index]); }
             }
             Capas.visibleGranjas = listadocapas;
+        }
+    };
+
+    var getInfotemplate = function (titulo, campos) {
+        campos += '<div id="divlocalizar"> ' +
+            '<input type="button" value="Acercar "  id="locate"  title="Centrar Mapa" alt="Centrar Mapa" class = "localizacion" onclick="  fTemplate(); "/></div>';
+        return new esri.InfoTemplate(titulo, campos);
+    }
+    fTemplate = function locate() {
+        if (graphico !== undefined) {
+            var extension = graphico.geometry.getExtent();
+            if (!extension) {
+                map.centerAndZoom(popup.getSelectedFeature().geometry, 20);
+            } else {
+                map.setExtent(graphico.geometry.getExtent(), true);
+            }
+            // cerrar ventana datos
+            $(".esriMobileInfoView").css("display", "none");
+            $(".esriMobileNavigationBar").css("display", "none");
         }
     };
 }
