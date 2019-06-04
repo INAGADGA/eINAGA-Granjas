@@ -96,13 +96,6 @@
         layer.opacity = 0.0;
         var basemap = new esri.dijit.Basemap({ layers: [layer], title: "Blanco", thumbnailUrl: "" });
 
-        // widget basemap
-        //var basemapGallery = new esri.dijit.BasemapGallery({
-        //    showArcGISBasemaps: false,
-        //    map: map,
-        //    basemaps: [topoBasemap, dkGreyBasemap, ltGreyBasemap, imagenBasemap, clarityBasemap, natGeoBasemap, streetBasemap, terrenoBasemap, oceanoBasemap, basemap]
-        //}, 'basemapGallery');
-
         var basemapGallery = new esri.dijit.BasemapGallery({
             showArcGISBasemaps: false,
             map: map,

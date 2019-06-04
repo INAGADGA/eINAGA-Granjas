@@ -51,13 +51,15 @@ function initializeEsriJS() {
         "esri/tasks/query",
         "esri/layers/FeatureLayer",
         "esri/layers/WMSLayer",
-        "esri/layers/WMSLayerInfo"
+        "esri/layers/WMSLayerInfo",
+        "esri/layers/WMTSLayer",
+        "esri/layers/WMTSLayerInfo"
 
     ], function (dom, domStyle, domConstruct, array, parser, query, on
         , Color, esriConfig, Map, Graphic, Draw
         , PopupMobile, SimpleMarkerSymbol, SimpleLineSymbol, SimpleFillSymbol,
         OverviewMap, BasemapGallery, Basemap, BasemapLayer, Scalebar, Search, HomeButton, LocateButton, Measurement, Legend, Circle, normalizeUtils, BufferParameters
-        ,Query, FeatureLayer, WMSLayer, WMSLayerInfo
+        , Query, FeatureLayer, WMSLayer, WMSLayerInfo, WMTSLayer, WMTSLayerInfo
     ) {
 
             //necesario para convertir nodos especialmente decorados en el DOM y convertirlos en Dijits , Widgets u otros Objetos
@@ -138,7 +140,7 @@ function initializeEsriJS() {
                     if (analisisDist) {
                         if (distancia <= 0 || distancia > 5100) {
                             tb.deactivate();
-                            dom.byId("popupMsg").innerHTML = "La distancia debe estar comprendida entre 1 y 3.000 metros";
+                            $("#popupMsg").html("La distancia debe estar comprendida entre 1 y 3.000 metros");
                             $("#popupMsg").popup('open');
                         }
                     }
@@ -150,13 +152,13 @@ function initializeEsriJS() {
                     }
                     else {
                         tb.deactivate();
-                        dom.byId("popupMsg").innerHTML = "Debe acercarse hasta una escala menor de 250.000 para digitalizar";
+                        $("#popupMsg").html("Debe acercarse hasta una escala menor de 250.000 para digitalizar");
                         $("#popupMsg").popup('open');
                     }
                 }
                 else {
 
-                    dom.byId("popupMsg").innerHTML = "Debe seleccionar al menos uno de los análisis";
+                    $("#popupMsg").html("Debe seleccionar al menos uno de los análisis");
                     $("#popupMsg").popup('open');
                 }
             });
@@ -194,15 +196,11 @@ function initializeEsriJS() {
 
             map.on("update-end", function () {
                 _herramientas.cursorxDefecto();
-                //map.setMapCursor("default");                
-                //domStyle.set(dom.byId("procesando"), "display", "none");
                 _transformaciones.dameCoord25830();
                 $("#escala").text("Escala 1:" + Number(map.getScale().toFixed(0)).toLocaleString('es'));
             });
             map.on("update-start", function () {
                 _herramientas.cursorEspera();
-                //map.setMapCursor("wait");
-                //domStyle.set(dom.byId("procesando"), "display", "inline-block");
                 $("#popupNested").popup("close");
             });
             map.on("zoom-end", function () {
@@ -222,12 +220,12 @@ function initializeEsriJS() {
             });
 
             $("#localizaCoord").click(function () {
-                var _point = new esri.geometry.Point(Number(dom.byId("CoordX").value.replace(',', '.')), Number(dom.byId("CoordY").value.replace(',', '.')), new esri.SpatialReference({ wkid: 25830 }));
+                var _point = new esri.geometry.Point(Number($("#CoordX").val().replace(',', '.')), Number($("#CoordY").val().replace(',', '.')), new esri.SpatialReference({ wkid: 25830 }));
                 _transformaciones.dameCoord4326(_point, true);
             });
 
             $("#convierteCoord").click(function () {
-                var _point = new esri.geometry.Point(Number(dom.byId("Longitud").value.replace(',', '.')), Number(dom.byId("Latitud").value.replace(',', '.')), new esri.SpatialReference({ wkid: 4326 }));
+                var _point = new esri.geometry.Point(Number($("#Longitud").val().replace(',', '.')), Number($("#Latitud").val().replace(',', '.')), new esri.SpatialReference({ wkid: 4326 }));
                 _transformaciones.dameCoordEtrs89(_point, true);
             });
 

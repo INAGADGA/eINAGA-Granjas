@@ -13,8 +13,7 @@
         params.geometries = [geom];
         params.outSR = outSR;
         gsvc.project(params, function (rtdos) {
-            geometryProyectada = rtdos[0];            
-            console.log(geometryProyectada);
+            geometryProyectada = rtdos[0];                        
             _herramientas.actualizaCoordTextBox(geom, geometryProyectada, abrirPanel);
             return geometryProyectada;
         });
