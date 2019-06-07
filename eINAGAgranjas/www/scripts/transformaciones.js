@@ -87,7 +87,7 @@
         });
     };
 
-    this.actualizaCoordsCatastro = function (geom, layerx, layery){
+    this.actualizaCoordsCatastro = function (geom, layerx, layery) {
         _graficos.clearGraphics();
         var outSR = new esri.SpatialReference(25830);
         var params = new esri.tasks.ProjectParameters();
@@ -96,7 +96,7 @@
         var newurl = "";
         gsvc.project(params, function (rtdos) {
             pt = rtdos[0];
-            var urlCat = "http://ovc.catastro.meh.es/Cartografia/WMS/ServidorWMS.aspx?&REQUEST=GetFeatureInfo&VERSION=1.1.1&SRS=EPSG%3A25830&BBOX=" + pt.x + "," + pt.y + "," + (pt.x + 1) + "," + (pt.y + 1) + "&WIDTH=" + map.width + "&HEIGHT=" + map.height + "&X=" + layerx + "&Y=" + layery ;
+            var urlCat = "http://ovc.catastro.meh.es/Cartografia/WMS/ServidorWMS.aspx?&REQUEST=GetFeatureInfo&VERSION=1.1.1&SRS=EPSG%3A25830&BBOX=" + pt.x + "," + pt.y + "," + (pt.x + 1) + "," + (pt.y + 1) + "&WIDTH=" + map.width + "&HEIGHT=" + map.height + "&X=" + layerx + "&Y=" + layery;
             popup.setContent('<iframe style="float:left; height:30em; width:100%" src=' + urlCat + ' frameborder="0" scrolling="yes"></iframe>');
             popup.setTitle("Información catastral");
             // dibujar y zoom a coordenada
@@ -105,5 +105,5 @@
             $(".esriMobileInfoView").css("display", "inline-block");
             $(".esriMobileNavigationBar").css("display", "inline-block");
         });
-    }
+    };
 }
