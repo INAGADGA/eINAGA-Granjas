@@ -106,6 +106,6 @@
     <splash src="res/screens/windows/SplashScreenPhone.scale-240.png" width="1152" height="1920" />
   </platform>
   <plugin name="cordova-plugin-file" spec="~6.0.1" />
-  <plugin name="cordova-plugin-geolocation" spec="~4.0.1" />
   <plugin name="cordova-pdf-generator" spec="~2.0.8" src="https://github.com/cesarvr/pdf-generator" />
+  <plugin name="cordova-plugin-geolocation" spec="~2.4.3" />
 </widget>

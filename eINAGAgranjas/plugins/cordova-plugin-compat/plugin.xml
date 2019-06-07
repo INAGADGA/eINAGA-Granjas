@@ -17,16 +17,21 @@
   specific language governing permissions and limitations
   under the License.
 -->
-
-<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
-    xmlns:rim="http://www.blackberry.com/ns/widgets"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    id="cordova-plugin-geolocation-tests"
-    version="2.4.3">
-    <name>Cordova Geolocation Plugin Tests</name>
-    <license>Apache 2.0</license>
-
-    <dependency id="cordova-plugin-device" url="https://github.com/apache/cordova-plugin-device" />
-    <js-module src="tests.js" name="tests">
-    </js-module>
-</plugin>
+<plugin 
+  xmlns="http://cordova.apache.org/ns/plugins/1.0" id="cordova-plugin-compat" version="1.2.0">
+  <name>Compat</name>
+  <description>[DEPRECATED] Cordova Compatibility Plugin</description>
+  <license>Apache 2.0</license>
+  <keywords>cordova,compat</keywords>
+  <repo>https://git-wip-us.apache.org/repos/asf/cordova-plugin-compat.git</repo>
+  <engines>
+    <engine name="cordova" version=">=5.0.0"/>
+    <engine name="cordova-android" version="
+      <6.3.0"/>
+    </engines>
+    <!-- android -->
+    <platform name="android">
+      <source-file src="src/android/PermissionHelper.java" target-dir="src/org/apache/cordova" />
+      <source-file src="src/android/BuildHelper.java" target-dir="src/org/apache/cordova" />
+    </platform>
+  </plugin>

@@ -21,11 +21,11 @@
     * En el caso que no obtenga señal, indicarlo con un mensaje
     */
     this.onError = function (error) {
-        dom.byId("gps").innerHTML = "Sin señal GPS";
+        $("#gps").html("Sin señal GPS");
     };
 
     /*
-    * Funión para obtener la posición GPS del dispositivo a través del objeto navigator del navegador
+    * Función para obtener la posición GPS del dispositivo a través del objeto navigator del navegador
     */
     this.getPosition = function () {
         var options = {

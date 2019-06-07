@@ -13,12 +13,17 @@
         "cordova-plugin-file": {
             "PACKAGE_NAME": "io.cordova.myappf05c87"
         },
-        "cordova-plugin-geolocation": {
+        "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "io.cordova.myappf05c87"
         },
-        "cordova-plugin-whitelist": {
+        "cordova-plugin-geolocation": {
+            "GEOLOCATION_USAGE_DESCRIPTION": " ",
             "PACKAGE_NAME": "io.cordova.myappf05c87"
         }
     },
-    "dependent_plugins": {}
+    "dependent_plugins": {
+        "cordova-plugin-compat": {
+            "PACKAGE_NAME": "io.cordova.myappf05c87"
+        }
+    }
 }
