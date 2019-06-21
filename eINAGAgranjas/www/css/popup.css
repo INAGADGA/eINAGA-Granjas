@@ -17,7 +17,7 @@
 .esriMobileInfoView {
     position: absolute;
     top: 42px;
-    width: 50%;
+    width: 40%;
     min-width: 250px;
     height: 80%;
     background: #fff;
@@ -70,7 +70,7 @@
     background-image: -moz-linear-gradient( center bottom, rgb(10,77,106) 25%, rgb(99,155,188) 82% );
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#639BBC', endColorstr='#0A4D6A');
     -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#639BBC', endColorstr='#0A4D6A')";*/
-    width: 50%;
+    width: 40%;
     min-width: 250px;
     height: 42px;
     margin: 0 auto;

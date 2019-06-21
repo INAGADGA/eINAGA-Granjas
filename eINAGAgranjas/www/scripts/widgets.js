@@ -18,10 +18,14 @@
         this.measurement.on("measure-end", function (evt) {
             if (evt.toolName === "location") {
                 _transformaciones.dameGeomEtrs89(evt.geometry, true);
+                map.setInfoWindowOnClick(false);
             }
+            $("#myPanel").panel("open");
         });
         // evento de cambio, para limpiar los datos anteriores
         this.measurement.on("tool-change", function (evt) {
+            $('#myonoffswitch').attr("checked", false).checkboxradio('refresh');
+            $("#myPanel").panel("close");
             // inhabilita la opción de información en el click, para poder realizar la medición
             map.setInfoWindowOnClick(false);
             // limpia el dato de la coordenada
@@ -53,7 +57,7 @@
 
 
         // widget búsquedas
-        var s = new esri.dijit.Search({
+        var search = new esri.dijit.Search({
             enableButtonMode: true,
             enableLabel: false,
             enableInfoWindow: true,
@@ -62,62 +66,78 @@
             enableSuggestionsMenu: true,
             map: map
         }, "search");
-        var sources = [
-            {
-                featureLayer: new esri.layers.FeatureLayer(rutaServidor + "/INAGA_Ambitos/MapServer/4"),
-                searchFields: ["D_NUCLEO_I"],
-                displayField: "D_NUCLEO_I",
-                exactMatch: true,
-                name: "Núcleo de población",
-                outFields: ["*"],
-                placeholder: "Núcleo de población",
-                maxResults: 6,
-                maxSuggestions: 6,
-                enableSuggestions: true,
-                minCharacters: 0
-            }, {
-                featureLayer: new esri.layers.FeatureLayer(rutaServidor + "/INAGA_Ambitos/MapServer/5"),
-                searchFields: ["REFPAR"],
-                displayField: "REFPAR",
-                exactMatch: true,
-                name: "Parcelas Catastrales",
-                outFields: ["*"],
-                placeholder: "14 primeros dígitos de REFPAR",
-                maxResults: 6,
-                maxSuggestions: 6,
-                enableSuggestions: true,
-                minCharacters: 0
-            }, {
-                featureLayer: new esri.layers.FeatureLayer(rutaServidor + "/INAGA_Ambitos/MapServer/7"),
-                searchFields: ["REFPAR"],
-                displayField: "REFPAR",
-                exactMatch: true,
-                name: "Parcelas Sigpac",
-                outFields: ["*"],
-                placeholder: " ",
-                maxResults: 6,
-                maxSuggestions: 6,
-                enableSuggestions: true,
-                minCharacters: 0
-            }, {
-                locator: new esri.tasks.Locator("//geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer"),
-                singleLineFieldName: "SingleLine",
-                name: "Geocoding Service",
-                localSearchOptions: {
-                    minScale: 300000,
-                    distance: 50000
-                },
-                placeholder: "Search Geocoder",
-                maxResults: 3,
-                maxSuggestions: 6,
-                enableSuggestions: false,
-                minCharacters: 0
-            }];
+        var sources = search.get("sources");
+        sources.push({
+            //featureLayer: new esri.layers.FeatureLayer(rutaServidor + "/INAGA_Ambitos/MapServer/3"),
+            //searchFields: ["D_MUNI_INE"],
+            //displayField: "D_MUNI_INE",
+            //exactMatch: false,
+            //name: "Núcleo de población",
+            //outFields: ["*"],
+            //placeholder: "Núcleo de población",
+            //maxResults: 6,
+            //maxSuggestions: 6,
+            //enableSuggestions: true,
+            //minCharacters: 0
 
-        s.set("sources", sources);
+            featureLayer: new esri.layers.FeatureLayer(rutaServidor + "/INAGA_Ambitos/MapServer/3"),
+            searchFields: ["D_MUNI_INE"],
+            displayField: "D_MUNI_INE",
+            exactMatch: false,
+            outFields: ["D_MUNI_INE", "C_MUNI_INE", "PROVINCIA"],
+            name: "Municipios",
+            placeholder: "Municipios",
+            maxResults: 6,
+            maxSuggestions: 6,
+            enableSuggestions: true,
+            minCharacters: 0
+
+        });
+        sources.push({
+            featureLayer: new esri.layers.FeatureLayer(rutaServidor + "/INAGA_Ambitos/MapServer/5"),
+            searchFields: ["REFPAR"],
+            displayField: "REFPAR",
+            exactMatch: true,
+            name: "Parcelas Catastrales",
+            outFields: ["*"],
+            placeholder: "14 primeros dígitos de REFPAR",
+            maxResults: 6,
+            maxSuggestions: 6,
+            enableSuggestions: true,
+            minCharacters: 0
+        });
+        sources.push({
+            featureLayer: new esri.layers.FeatureLayer(rutaServidor + "/INAGA_Ambitos/MapServer/7"),
+            searchFields: ["REFPAR"],
+            displayField: "REFPAR",
+            exactMatch: true,
+            name: "Parcelas Sigpac",
+            outFields: ["*"],
+            placeholder: " ",
+            maxResults: 6,
+            maxSuggestions: 6,
+            enableSuggestions: true,
+            minCharacters: 0
+        });
+        sources.push({
+            locator: new esri.tasks.Locator("//geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer"),
+            singleLineFieldName: "SingleLine",
+            name: "Geocoding Service",
+            localSearchOptions: {
+                minScale: 300000,
+                distance: 50000
+            },
+            placeholder: "Search Geocoder",
+            maxResults: 3,
+            maxSuggestions: 6,
+            enableSuggestions: false,
+            minCharacters: 0
+        });
+
+        search.set("sources", sources);
         //s.sources[0].searchExtent = customExtentAndSR;
         //s.sources[1].searchExtent = customExtentAndSR;
-        s.startup();
+        search.startup();
     };
 
     // función para resetear la medición

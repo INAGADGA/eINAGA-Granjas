@@ -12,7 +12,7 @@ function Capas() {
     Capas.fcNucleos = new esri.layers.FeatureLayer(rutaServidor + "/INAGA_Ambitos/MapServer/4");
     Capas.fcZonVul = new esri.layers.FeatureLayer(rutaServidor + "/INAGA_Explotaciones_G/MapServer/4");
     Capas.fcMunisLimitacion = new esri.layers.FeatureLayer(rutaServidor + "/INAGA_Explotaciones_G/MapServer/6");
-
+    Capas.layerCat = null;
     /*
      * Función para añadir las capas necesarias a la visualización
      * Dependencias: tiene que estar incializado el mapa
@@ -44,7 +44,7 @@ function Capas() {
         dynamicMSLayerGranjas.setVisibility(true);
         dynamicMSLayerGranjas.setInfoTemplates({
             //0: { infoTemplate: new esri.InfoTemplate("Explotaciones REGA (NO Producción)", "${*}") },
-            0: { infoTemplate: new esri.InfoTemplate(getInfotemplate("Explotaciones REGA </br>(Producción)", "<h3>Granja REGA:</h3><b>Codigo:</b> ${CODIGO}<br><b>Explotacion:</b> ${EXPLOTACION}<br><b>Especie:</b> ${ESPECIE}<br><b>Familia:</b> ${FAMILIA}<br><b>TIPO:</b> ${TIPO}<br><b>CAPACIDAD:</b> ${CAPACIDAD}")) },
+            0: { infoTemplate: new esri.InfoTemplate(getInfotemplate("Explotaciones REGA </br>(Producción)", "<h3>Granja REGA:</h3><b>Codigo:</b> ${CODIGO}<br><b>Explotacion:</b> ${EXPLOTACION}<br><b>Especie:</b> ${ESPECIE}<br><b>Familia:</b> ${FAMILIA}<br><b>TIPO:</b> ${TIPO}<br><b>CAPACIDAD:</b> ${CAPACIDAD}<br><b>ESTADO:</b> ${ESTADO}")) },
             1: { infoTemplate: new esri.InfoTemplate(getInfotemplate("Explotaciones </br>en tramitación en INAGA", "<h3>Granja Tramitación:</h3><b>Codigo:</b> ${CODIGO}<br><b>Explotacion:</b> ${EXPLOTACION}<br><b>Especie:</b> ${ESPECIE}<br><b>Familia:</b> ${FAMILIA}<br><b>TIPO:</b> ${TIPO}<br><b>CAPACIDAD:</b> ${CAPACIDAD}")) },
             2: { infoTemplate: new esri.InfoTemplate(getInfotemplate("Explotaciones </br>autorizadas sin construir", "<h3>Granja Resuelta:</h3><b>Codigo:</b> ${CODIGO}<br><b>Explotacion:</b> ${EXPLOTACION}<br><b>Especie:</b> ${ESPECIE}<br><b>Familia:</b> ${FAMILIA}<br><b>TIPO:</b> ${TIPO}<br><b>CAPACIDAD:</b> ${CAPACIDAD}")) },
             3: { infoTemplate: new esri.InfoTemplate(getInfotemplate("Comederos Aves Necrófagas", "<h3>Comederos Aves Necrófagas:</h3><b>MULADAR:</b> ${MULADAR}")) },
@@ -104,7 +104,7 @@ function Capas() {
             title: 'Catastro'
         });
 
-        layerCat = new esri.layers.WMSLayer('http://ovc.catastro.meh.es/Cartografia/WMS/ServidorWMS.aspx?', {
+        Capas.layerCat = new esri.layers.WMSLayer('https://ovc.catastro.meh.es/Cartografia/WMS/ServidorWMS.aspx?', {
             resourceInfo: {
                 extent: customExtentAndSR,
                 layerInfos: [layer1]
@@ -112,10 +112,10 @@ function Capas() {
             visibleLayers: ['catastro']
 
         });
-        layerCat.visible = true;
-        layerCat.id = "OVC";
-        layerCat.version = "1.1.1";
-        layerCat.spatialReferences[0] = 3857; //new esri.SpatialReference(3857);
+        Capas.layerCat.visible = true;
+        Capas.layerCat.id = "OVC";
+        Capas.layerCat.version = "1.1.1";
+        Capas.layerCat.spatialReferences[0] = 3857; //new esri.SpatialReference(3857);
 
 
         var layerSigpacPar = new esri.layers.WMSLayerInfo({
@@ -162,10 +162,15 @@ function Capas() {
         var capaVinilo = new esri.layers.GraphicsLayer({ "id": "Geodesic" });
 
         // añade las capas al mapa
-        map.addLayers([wmsLayeriGN, dynamicMSLayerMontes, dynamicMSLayerCotos, dynamicMSLayerFPA, dynamicMSLayerLimites, dynamicMSLayerGranjas, wmsSigpac, layerCat, capaVinilo]);
+        map.addLayers([wmsLayeriGN, dynamicMSLayerMontes, dynamicMSLayerCotos, dynamicMSLayerFPA, dynamicMSLayerLimites, dynamicMSLayerGranjas, wmsSigpac, Capas.layerCat, capaVinilo]);
 
     };
 
+    this.cambiaVisibilidadOVC = function (visible) {
+        $('#checkCatastro').attr("checked", visible).checkboxradio('refresh');
+        Capas.layerCat.visible = visible;
+        map.setExtent(map.extent);
+    };
     this.cambiaVisibilidadGranjas = function (nombre, id) {
         if ($('#' + nombre).is(":checked")) { Capas.visibleGranjas.push(id); }
         else { quitaValoresVisibilidad("Granjas", id); }

@@ -15,6 +15,7 @@
         var Speed = position.coords.speed;
         var Timestamp = position.timestamp;
         _transformaciones.dameCoordEtrs89(miposicion, false);
+        $("#myPanel").panel("open");
     };
 
     /*

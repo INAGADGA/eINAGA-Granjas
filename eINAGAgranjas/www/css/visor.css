@@ -547,18 +547,6 @@ button {
     width: 230px;
 }
 
-.esriMobileInfoView {
-    position: absolute;
-    top: 42px;
-    width: 50%;
-    min-width: 250px;
-    height: 80%;
-    background: #fff;
-    /*display: none;*/
-    z-index: 42;
-    opacity: 0.8;
-    overflow: hidden
-}
 
     .esriMobileInfoView .esriMobilePopupInfoView {
         display: none;
@@ -592,25 +580,6 @@ button {
     height: 200px
 }
 
-.esriMobileNavigationBar {
-    overflow: hidden;
-    /*position: absolute;*/
-    z-index: 41;
-    top: 0;
-    background: rgba(7, 41, 101, 0.85);
-    /*background-color: #639BBC;
-            background-image: -webkit-gradient( linear, left bottom, left top, color-stop(0.25, rgb(10,77,106)), color-stop(0.82, rgb(99,155,188)) );
-            background-image: -moz-linear-gradient( center bottom, rgb(10,77,106) 25%, rgb(99,155,188) 82% );
-            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#639BBC', endColorstr='#0A4D6A');
-            -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#639BBC', endColorstr='#0A4D6A')";*/
-    width: 50%;
-    min-width: 250px;
-    height: 42px;
-    margin: 0 auto;
-    clear: both;
-    font-family: Helvetica,Arial,sans-serif;
-    display: block
-}
 
 .ovwHighlight {
     background-color: white !important;

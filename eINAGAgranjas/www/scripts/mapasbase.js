@@ -97,9 +97,9 @@
         var basemap = new esri.dijit.Basemap({ layers: [layer], title: "Blanco", thumbnailUrl: "" });
 
         var basemapGallery = new esri.dijit.BasemapGallery({
-            showArcGISBasemaps: false,
-            map: map,
-            basemaps: [topoBasemap, dkGreyBasemap, ltGreyBasemap, imagenBasemap, clarityBasemap, natGeoBasemap, streetBasemap, terrenoBasemap, oceanoBasemap, basemap]
+            showArcGISBasemaps: true,
+            map: map
+            //basemaps: [topoBasemap, dkGreyBasemap, ltGreyBasemap, imagenBasemap, clarityBasemap, natGeoBasemap, streetBasemap, terrenoBasemap, oceanoBasemap, basemap]
         }, idDom);
 
 

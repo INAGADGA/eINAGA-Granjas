@@ -130,6 +130,7 @@ function initializeEsriJS() {
             });
 
             query(".tool").on("click", function (evt) {
+
                 _widgets.reseteaMedicion();
                 _graficos.clearGraphics();
                 var distancia = $("#distAnalisis").val();
@@ -189,8 +190,10 @@ function initializeEsriJS() {
             $("#myonoffswitch").on('change', function () {
                 if ($(this).is(':checked')) {
                     map.setInfoWindowOnClick(false);
+                    _capas.cambiaVisibilidadOVC(true);
                 } else {
                     map.setInfoWindowOnClick(true);
+                    _capas.cambiaVisibilidadOVC(false);
                 }
             });
 

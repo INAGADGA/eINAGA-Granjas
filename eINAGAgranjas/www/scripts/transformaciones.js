@@ -19,7 +19,7 @@
         });
         _graficos.addPoint4326(geom);
         tb.deactivate();
-        //$("#myPanel").panel("open");
+        $("#myPanel").panel("open");
     };
 
     /*
@@ -36,7 +36,7 @@
             _graficos.addPoint4326(rtdos[0]);
             tb.deactivate();
             _herramientas.actualizaCoordTextBox(rtdos[0], geom, abrirPanel);
-            //if (abrirPanel) { $("#myPanel").panel("open"); }
+            if (abrirPanel) { $("#myPanel").panel("open"); }
         });
     };
 
@@ -96,7 +96,7 @@
         var newurl = "";
         gsvc.project(params, function (rtdos) {
             pt = rtdos[0];
-            var urlCat = "http://ovc.catastro.meh.es/Cartografia/WMS/ServidorWMS.aspx?&REQUEST=GetFeatureInfo&VERSION=1.1.1&SRS=EPSG%3A25830&BBOX=" + pt.x + "," + pt.y + "," + (pt.x + 1) + "," + (pt.y + 1) + "&WIDTH=" + map.width + "&HEIGHT=" + map.height + "&X=" + layerx + "&Y=" + layery;
+            var urlCat = "https://ovc.catastro.meh.es/Cartografia/WMS/ServidorWMS.aspx?&REQUEST=GetFeatureInfo&VERSION=1.1.1&SRS=EPSG%3A25830&BBOX=" + pt.x + "," + pt.y + "," + (pt.x + 1) + "," + (pt.y + 1) + "&WIDTH=" + map.width + "&HEIGHT=" + map.height + "&X=" + layerx + "&Y=" + layery;
             popup.setContent('<iframe style="float:left; height:30em; width:100%" src=' + urlCat + ' frameborder="0" scrolling="yes"></iframe>');
             popup.setTitle("Información catastral");
             // dibujar y zoom a coordenada
@@ -104,6 +104,7 @@
             // abrir ventana datos
             $(".esriMobileInfoView").css("display", "inline-block");
             $(".esriMobileNavigationBar").css("display", "inline-block");
+            
         });
     };
 }
