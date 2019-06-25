@@ -12,7 +12,7 @@ var gsvc;
 var rutaServidor;
 var customExtentAndSR;
 var popup;
-
+var basemapGallery;
 $(document).ready(function () {
     initializeEsriJS();
 });
@@ -53,13 +53,14 @@ function initializeEsriJS() {
         "esri/layers/WMSLayer",
         "esri/layers/WMSLayerInfo",
         "esri/layers/WMTSLayer",
-        "esri/layers/WMTSLayerInfo"
+        "esri/layers/WMTSLayerInfo",
+        "esri/layers/TileInfo"
 
     ], function (dom, domStyle, domConstruct, array, parser, query, on
         , Color, esriConfig, Map, Graphic, Draw
         , PopupMobile, SimpleMarkerSymbol, SimpleLineSymbol, SimpleFillSymbol,
         OverviewMap, BasemapGallery, Basemap, BasemapLayer, Scalebar, Search, HomeButton, LocateButton, Measurement, Legend, Circle, normalizeUtils, BufferParameters
-        , Query, FeatureLayer, WMSLayer, WMSLayerInfo, WMTSLayer, WMTSLayerInfo
+        , Query, FeatureLayer, WMSLayer, WMSLayerInfo, WMTSLayer, WMTSLayerInfo, TileInfo
     ) {
 
             //necesario para convertir nodos especialmente decorados en el DOM y convertirlos en Dijits , Widgets u otros Objetos
@@ -108,7 +109,7 @@ function initializeEsriJS() {
             _mapasBse.cargaMapasBase('basemapGallery');
             // Capas necesarias -------------------------------------------------------------------------------------------------------------------------------------------------------------------
             _capas.addCapas2Visor();
-
+            
             //Eventos -------------------------------------------------------------------------------------------------------------------------------------------------------------------
             popup.on("selection-change", function () {
                 graphico = popup.getSelectedFeature();
@@ -126,11 +127,12 @@ function initializeEsriJS() {
             // cuando dibuje la coordenada, lanzar el análisis
             tb.on("draw-end", function () {
                 coordConsulta = arguments[0].geometry;
+
                 _queries.dameInf();
             });
 
             query(".tool").on("click", function (evt) {
-
+                $('#myonoffswitch').attr("checked", false).checkboxradio('refresh');
                 _widgets.reseteaMedicion();
                 _graficos.clearGraphics();
                 var distancia = $("#distAnalisis").val();
@@ -248,7 +250,11 @@ function initializeEsriJS() {
                 }
                 else { targetLayer.setVisibility(true); }
             });
-
+            $("#checkBase").click(function () {
+                //_capas.layerWMTS.visible = $('#checkBase').is(":checked");
+                //map.setExtent(map.extent);
+                _capas.cambiaVisibilidadIGNBase($('#checkBase').is(":checked"));
+            });
             $("#checkGr_Prod").click(function () {
                 _capas.cambiaVisibilidadGranjas("checkGr_Prod", 0);
             });
@@ -294,6 +300,10 @@ function initializeEsriJS() {
                 _capas.cambiaVisibilidadFiguras("checkboxappe", 7);
             });
 
+            //basemapGallery.on("selection-change", function () {
+            //    var basemap = basemapGallery.getSelected();
+            //    return;
+            //});
 
 
         });

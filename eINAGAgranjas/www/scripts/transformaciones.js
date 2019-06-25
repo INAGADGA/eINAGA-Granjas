@@ -18,8 +18,7 @@
             return geometryProyectada;
         });
         _graficos.addPoint4326(geom);
-        tb.deactivate();
-        $("#myPanel").panel("open");
+        tb.deactivate();       
     };
 
     /*

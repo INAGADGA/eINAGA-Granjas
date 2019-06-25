@@ -4,6 +4,8 @@
     this.measurement;
     // inicializamos todos los widgets necesarios, y los asociamos a su elemento html
     this.cargaWidgets = function () {
+
+
         // widget medicion    
         this.measurement = new esri.dijit.Measurement({
             map: map,

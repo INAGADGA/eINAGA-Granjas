@@ -133,7 +133,7 @@ body {
     position: absolute;
     top: 150px;
     left: 18px;
-    z-index: 40;
+    z-index: 20;
     border-radius: 5px;
     background-color: rgba(7, 41, 101, 0.85);
     padding: 2px;

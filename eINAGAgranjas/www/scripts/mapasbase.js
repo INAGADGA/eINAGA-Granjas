@@ -51,7 +51,7 @@
             layers: [ltGreyLayer, ltGreyLabelsLayer],
             id: 'ltGrey',
             title: 'Lona Gris Claro',
-            thumbnailUrl: 'https://www.arcgis.com/sharing/rest/content/items/8b3d38c0819547faa83f7b7aca80bd76/info/thumbnail/light_canvas.jpg'
+            thumbnailUrl: 'https://www.arcgis.com/sharing/rest/content/items/79f66c69319e4408a8388c7eb22941a1/info/thumbnail/light_gray_canvas.jpg'
         });
         // imagenes
         var imagenes = new esri.dijit.BasemapLayer({ url: 'https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer' });
@@ -68,7 +68,7 @@
             layers: [clarity, etiquetas],
             id: 'clarity',
             title: 'clarity world',
-            thumbnailUrl: 'https://www.arcgis.com/sharing/rest/content/items/da10cf4ba254469caf8016cd66369157/info/thumbnail/imagery_clarity_sm.jpg'
+            thumbnailUrl: 'https://www.arcgis.com/sharing/rest/content/items/da10cf4ba254469caf8016cd66369157/info/thumbnail/ago_downloaded.jpg'
         });
 
         // NACIONAL GEOGRAPIC
@@ -96,16 +96,17 @@
         layer.opacity = 0.0;
         var basemap = new esri.dijit.Basemap({ layers: [layer], title: "Blanco", thumbnailUrl: "" });
 
-        var basemapGallery = new esri.dijit.BasemapGallery({
-            showArcGISBasemaps: true,
-            map: map
-            //basemaps: [topoBasemap, dkGreyBasemap, ltGreyBasemap, imagenBasemap, clarityBasemap, natGeoBasemap, streetBasemap, terrenoBasemap, oceanoBasemap, basemap]
+        basemapGallery = new esri.dijit.BasemapGallery({
+            showArcGISBasemaps: false,
+            map: map,
+            basemaps: [topoBasemap, dkGreyBasemap, ltGreyBasemap, imagenBasemap, clarityBasemap, natGeoBasemap, streetBasemap, terrenoBasemap, oceanoBasemap, basemap]
         }, idDom);
 
 
         // iniciamos el basemap y asignamos los mapas seleccionados
         basemapGallery.startup();
-        //basemapGallery.add(basemap);
+        basemapGallery.add(basemap);
+
     };
 
 }

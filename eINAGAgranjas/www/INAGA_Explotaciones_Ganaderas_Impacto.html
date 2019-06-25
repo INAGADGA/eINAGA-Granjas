@@ -5,7 +5,7 @@
                      script-src 'self' https://sampleserver6.arcgisonline.com https://cdn.jsdelivr.net https://geocode.arcgis.com https://code.jquery.com  https://js.arcgis.com  https://idearagon.aragon.es http://idearagon.aragon.es https://clarity.maptiles.arcgis.com https://tile.openstreetmap.org 'unsafe-eval' 'unsafe-inline' data: gap: https://ssl.gstatic.com 'unsafe-eval';
                      style-src 'self'  https://cdn.jsdelivr.net https://geocode.arcgis.com https://code.jquery.com  https://js.arcgis.com  https://idearagon.aragon.es  http://idearagon.aragon.es https://dojotoolkit.org 'unsafe-inline';
                      connect-src 'self' https://geocode.arcgis.com https://dojotoolkit.org https://dojotoolkit.org https://idearagon.aragon.es http://idearagon.aragon.es https://sampleserver6.arcgisonline.com  https://server.arcgisonline.com  https://www.arcgis.com https://server.arcgisonline.com https://clarity.maptiles.arcgis.com  https://services.arcgisonline.com https://ovc.catastro.meh.es https://tile.openstreetmap.org https://aplicaciones.aragon.es 'unsafe-eval' 'unsafe-inline' 'self' ws:;
-                     img-src 'self' https://www.ign.es/wms-inspire/mapa-raster http://www.arcgis.com/sharing/rest/content/items/ http://www.arcgis.com/sharing/rest/content/items https://geocode.arcgis.com https://code.jquery.com  https://js.arcgis.com https://idearagon.aragon.es http://idearagon.aragon.es https://sampleserver6.arcgisonline.com  https://server.arcgisonline.com  https://www.arcgis.com https://server.arcgisonline.com https://clarity.maptiles.arcgis.com  https://services.arcgisonline.com https://ovc.catastro.meh.es  https://tile.openstreetmap.org https://aplicaciones.aragon.es 'unsafe-eval' 'unsafe-inline' blob: data: ; 
+                     img-src 'self' http://www.ign.es/wmts/ign-base https://www.ign.es/wms-inspire/mapa-raster https://www.arcgis.com/sharing/rest/content/items https://geocode.arcgis.com https://code.jquery.com  https://js.arcgis.com https://idearagon.aragon.es http://idearagon.aragon.es https://sampleserver6.arcgisonline.com  https://server.arcgisonline.com  https://www.arcgis.com https://server.arcgisonline.com https://clarity.maptiles.arcgis.com  https://services.arcgisonline.com https://ovc.catastro.meh.es  https://tile.openstreetmap.org https://aplicaciones.aragon.es 'unsafe-eval' 'unsafe-inline' blob: data: ; 
                      media-src *;
                      frame-src https://ovc.catastro.meh.es/ https://www1.sedecatastro.gob.es www.openstreetmap.org ;
                      font-src  'self' https://js.arcgis.com https://code.jquery.com data:">
@@ -47,9 +47,9 @@
     <script src="https://cdn.jsdelivr.net/leaflet/1.0.0-rc.1/leaflet-src.js"></script>
     <script src="https://cdn.jsdelivr.net/leaflet.esri/2.0.0/esri-leaflet.js"></script>
 
-    <link rel="stylesheet" href="https://js.arcgis.com/3.26/dijit/themes/claro/claro.css">
-    <link rel="stylesheet" href="https://js.arcgis.com/3.26/esri/css/esri.css">
-    <script src="https://js.arcgis.com/3.26compact/init.js"></script>
+    <link rel="stylesheet" href="https://js.arcgis.com/3.28/dijit/themes/claro/claro.css">
+    <link rel="stylesheet" href="https://js.arcgis.com/3.28/esri/css/esri.css">
+    <script src="https://js.arcgis.com/3.28compact/init.js"></script>
 
     <link rel="stylesheet" type="text/css" href="css/popup.css">
     <link rel="stylesheet" type="text/css" href="css/comunes.css">
@@ -77,7 +77,7 @@
                     <input type="button" class="tool" value="Click en el mapa" id="point" data-icon="location" data-mini="true" data-iconpos="right" data-inline="false" title="Punto">
                 </div>
 
-                <div data-role="collapsible" data-inset="true" data-mini="true" data-iconpos="right" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d">
+                <div id="collapCoord" data-role="collapsible" data-inset="true" data-mini="true" data-iconpos="right" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d">
                     <h3>Localización Coordenadas</h3>
                     <div id="collapCoordETRS" data-role="collapsible" data-inset="true" data-mini="true" data-iconpos="right" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d">
                         <h6>ETRS89 Zona 30N</h6>
@@ -130,6 +130,7 @@
                             <input type="checkbox" name="checkboxacrit" id="checkboxacrit" data-mini="true"><label for="checkboxacrit">Áreas críticas especies amenazadas</label>
                             <input type="checkbox" name="checkboxappe" id="checkboxappe" data-mini="true"><label for="checkboxappe">Ámbitos de protección especies amenazadas</label>
                             <input type="checkbox" name="checkRaster" id="checkRaster" data-mini="true"><label for="checkRaster">IGN Raster</label>
+                            <input type="checkbox" name="checkBase" id="checkBase" data-mini="true" checked><label for="checkBase">IGN Base</label>
                         </fieldset>
                     </form>
                 </div>
