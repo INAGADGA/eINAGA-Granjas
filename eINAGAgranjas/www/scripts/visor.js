@@ -82,7 +82,7 @@ function initializeEsriJS() {
             var _queries = new Queries();
             var _herramientas = new Herramientas();
             var _transformaciones = new Transformaciones();
-
+            var _mapasBase = new Mapasbase();
             var _widgets = new Widgets();
 
             //rutaServidor = "https://idearagondes.aragon.local:4063/arcgis/rest/services/INAGA";
@@ -93,12 +93,12 @@ function initializeEsriJS() {
 
             // incicializar mapa ---------------------------------------------------------------------------------------------------------
             map = new Map("map", {
-                basemap: "satellite",
+                basemap: "streets",
                 infoWindow: popup,
                 extent: customExtentAndSR
             });
             map.disableKeyboardNavigation();
-
+            
 
             
 
@@ -107,6 +107,7 @@ function initializeEsriJS() {
             // añade los mapas base al mapa
             var _mapasBse = new Mapasbase();
             _mapasBse.cargaMapasBase('basemapGallery');
+            //map.setBasemap(Mapasbase.ignLidar);
             // Capas necesarias -------------------------------------------------------------------------------------------------------------------------------------------------------------------
             _capas.addCapas2Visor();
             
@@ -241,20 +242,7 @@ function initializeEsriJS() {
                     targetLayer.setVisibility(false);
                 }
                 else { targetLayer.setVisibility(true); }
-            });
-
-            $("#checkRaster").click(function () {
-                var targetLayer = map.getLayer("IGN");
-                if (targetLayer.visible) {
-                    targetLayer.setVisibility(false);
-                }
-                else { targetLayer.setVisibility(true); }
-            });
-            $("#checkBase").click(function () {
-                //_capas.layerWMTS.visible = $('#checkBase').is(":checked");
-                //map.setExtent(map.extent);
-                _capas.cambiaVisibilidadIGNBase($('#checkBase').is(":checked"));
-            });
+            });            
             $("#checkGr_Prod").click(function () {
                 _capas.cambiaVisibilidadGranjas("checkGr_Prod", 0);
             });
@@ -300,10 +288,16 @@ function initializeEsriJS() {
                 _capas.cambiaVisibilidadFiguras("checkboxappe", 7);
             });
 
-            //basemapGallery.on("selection-change", function () {
-            //    var basemap = basemapGallery.getSelected();
-            //    return;
-            //});
+            basemapGallery.on("selection-change", function () {
+                map.removeLayer(Mapasbase.wmtsLayer);
+                //var basemap = basemapGallery.getSelected();
+                if (basemapGallery.getSelected().id.indexOf("WMTSBaseMap") !== -1) {
+                    basemapGallery._removeBasemapLayers();
+                    var l = basemapGallery.getSelected().layers[0];
+                    l.id = basemapGallery.getSelected().id;
+                    map.addLayer(l, 0);
+                }
+            });
 
 
         });

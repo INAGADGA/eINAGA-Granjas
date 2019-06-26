@@ -292,7 +292,7 @@ function Capas() {
         Capas.layerWMTS.id = "wmts";
         Capas.layerWMTS.opacity = 0.7;
         // añade las capas al mapa
-        map.addLayers([Capas.layerWMTS, wmsLayeriGN, dynamicMSLayerMontes, dynamicMSLayerCotos, dynamicMSLayerFPA, dynamicMSLayerLimites, dynamicMSLayerGranjas, wmsSigpac, Capas.layerCat, capaVinilo]);
+        map.addLayers([wmsLayeriGN, dynamicMSLayerMontes, dynamicMSLayerCotos, dynamicMSLayerFPA, dynamicMSLayerLimites, dynamicMSLayerGranjas, wmsSigpac, Capas.layerCat, capaVinilo]);
 
     };
 

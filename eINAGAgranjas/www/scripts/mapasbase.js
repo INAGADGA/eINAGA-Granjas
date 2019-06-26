@@ -1,5 +1,6 @@
 ﻿function Mapasbase() {
 
+    Mapasbase.wmtsLayer = null;
 /*
 * Función para añadir los distintos mapas base (fondo) al visor
 */
@@ -91,22 +92,210 @@
             title: 'Open Street Map',
             thumbnailUrl: 'https://www.arcgis.com/sharing/rest/content/items/d415dff75dd042258ceda46f7252ad70/info/thumbnail/temposm.jpg'
         });
+        
+        
+
+        //Añadimos las capas WMTS de IGN
+        var tileInfo = new esri.layers.TileInfo({
+            "dpi": 96,
+            //"format": "format/png",
+            "compressionQuality": 0,
+            "spatialReference": new esri.SpatialReference({
+                "wkid": 102100
+            }),
+            "cols": 256,
+            "rows": 256,
+            "origin": {
+                "x": -20037508.34,
+                "y": 20037508
+            },
+            "lods": [{
+                "level": "0",
+                "scale": 591658710.8267717,
+                "resolution": 156543.03390625003
+            }, {
+                "level": "1",
+                "scale": 295829355.41338587,
+                "resolution": 78271.51695312501
+            }, {
+                "level": "2",
+                "scale": 147914677.70669293,
+                "resolution": 39135.75847656251
+            }, {
+                "level": "3",
+                "scale": 73957338.85334627,
+                "resolution": 19567.879238281203
+            }, {
+                "level": "4",
+                "scale": 36978669.42667321,
+                "resolution": 9783.93961914062
+            }, {
+                "level": "5",
+                "scale": 18489334.713336606,
+                "resolution": 4891.96980957031
+            }, {
+                "level": "6",
+                "scale": 9244667.356668284,
+                "resolution": 2445.9849047851503
+            }, {
+                "level": "7",
+                "scale": 4622333.6783341225,
+                "resolution": 1222.99245239257
+            }, {
+                "level": "8",
+                "scale": 2311166.8391670766,
+                "resolution": 611.496226196289
+            }, {
+                "level": "9",
+                "scale": 1155583.4195835365,
+                "resolution": 305.7481130981441
+            }, {
+                "level": "10",
+                "scale": 577791.7097917682,
+                "resolution": 152.87405654907204
+            }, {
+                "level": "11",
+                "scale": 288895.8548958845,
+                "resolution": 76.43702827453612
+            }, {
+                "level": "12",
+                "scale": 144447.92744794206,
+                "resolution": 38.21851413726801
+            }, {
+                "level": "13",
+                "scale": 72223.96372397103,
+                "resolution": 19.109257068634005
+            }, {
+                "level": "14",
+                "scale": 36111.98186198555,
+                "resolution": 9.55462853431701
+            }, {
+                "level": "15",
+                "scale": 18055.990930992757,
+                "resolution": 4.777314267158501
+            }, {
+                "level": "16",
+                "scale": 9027.995465496379,
+                "resolution": 2.3886571335792506
+            }, {
+                "level": "17",
+                "scale": 4513.99773274817,
+                "resolution": 1.1943285667896202
+            }, {
+                "level": "18",
+                "scale": 2256.998866374085,
+                "resolution": 0.5971642833948101
+            }, {
+                "level": "19",
+                "scale": 1128.4994331870425,
+                "resolution": 0.29858214169740505
+            }, {
+                "level": "20",
+                "scale": 564.2497165935213,
+                "resolution": 0.14929107084870252
+            }]
+        });
+        var tileExtent = new esri.geometry.Extent(-20037508.34, -20037508.680000007, 20037508.340000007, 20037508, new esri.SpatialReference({
+            wkid: 102100
+        }));
+        var layerInfo = new esri.layers.WMTSLayerInfo({
+            tileInfo: tileInfo,
+            fullExtent: tileExtent,
+            initialExtent: tileExtent,
+            identifier: "IGNBaseTodo",
+            tileMatrixSet: "GoogleMapsCompatible",
+            format: "jpeg",
+            style: "default"
+        });
+        var resourceInfo = {
+            version: "1.0.0",
+            layerInfos: [layerInfo],
+            copyright: "IGN"
+        };
+        var options = {
+            serviceMode: "KVP",
+            resourceInfo: resourceInfo,
+            layerInfo: layerInfo
+        };
+        Mapasbase.wmtsLayer = new esri.layers.WMTSLayer("https://www.ign.es/wmts/ign-base", options);
+        var ignBase = new esri.dijit.Basemap({
+            id: "WMTSBaseMap.base.IGN",
+            layers: [Mapasbase.wmtsLayer],
+            title: "Base IGN",
+            thumbnailUrl: "/images/thumbIGNBase.jpg"
+        });
+
+        
+        var layerInfo2 = new esri.layers.WMTSLayerInfo({
+            tileInfo: tileInfo,
+            fullExtent: tileExtent,
+            initialExtent: tileExtent,
+            identifier: "MTN",
+            tileMatrixSet: "GoogleMapsCompatible",
+            format: "png",
+            style: "default"
+        });
+        var resourceInfo2 = {
+            version: "1.0.0",
+            layerInfos: [layerInfo2],
+            copyright: "IGN"
+        };
+        var options2 = {
+            serviceMode: "KVP",
+            resourceInfo: resourceInfo2,
+            layerInfo: layerInfo2
+        };  
+        var wmtsIGNRaster = new esri.layers.WMTSLayer("https://www.ign.es/wmts/mapa-raster", options2);
+        
+        var ignRaster = new esri.dijit.Basemap({
+            id: "WMTSBaseMap.raster.IGN",
+            layers: [wmtsIGNRaster],
+            title: "Raster IGN",
+            thumbnailUrl: "/images/thumbIGNRaster.jpg"
+        });
+        var layerInfo3 = new esri.layers.WMTSLayerInfo({
+            tileInfo: tileInfo,
+            fullExtent: tileExtent,
+            initialExtent: tileExtent,
+            identifier: "EL.GridCoverageDSM",
+            tileMatrixSet: "GoogleMapsCompatible",
+            format: "png",
+            style: "default"
+        });
+        var resourceInfo3 = {
+            version: "1.0.0",
+            layerInfos: [layerInfo3],
+            copyright: "IGN"
+        };
+        var options3= {
+            serviceMode: "KVP",
+            resourceInfo: resourceInfo3,
+            layerInfo: layerInfo3
+        };  
+        var wmtsIGNRLidar = new esri.layers.WMTSLayer("https://wmts-mapa-lidar.idee.es/lidar", options3);
+        ignLidar = new esri.dijit.Basemap({
+            id: "WMTSBaseMap.lidar.IGN",
+            layers: [wmtsIGNRLidar],
+            title: "Lidar IGN",
+            thumbnailUrl: "/images/thumbIGNLidar.jpg"
+        });
+
         // mapabase en blanco
         var layer = new esri.dijit.BasemapLayer({ url: "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer" });
         layer.opacity = 0.0;
-        var basemap = new esri.dijit.Basemap({ layers: [layer], title: "Blanco", thumbnailUrl: "" });
+        var basemap = new esri.dijit.Basemap({ layers: [layer], title: "Blanco", thumbnailUrl: "/images/thumbBlanco.jpg" });
 
         basemapGallery = new esri.dijit.BasemapGallery({
             showArcGISBasemaps: false,
             map: map,
-            basemaps: [topoBasemap, dkGreyBasemap, ltGreyBasemap, imagenBasemap, clarityBasemap, natGeoBasemap, streetBasemap, terrenoBasemap, oceanoBasemap, basemap]
+            //basemaps: [ignBase, ignRaster, ignLidar, topoBasemap, dkGreyBasemap, ltGreyBasemap, imagenBasemap, clarityBasemap, natGeoBasemap, streetBasemap, terrenoBasemap, oceanoBasemap, basemap]
+            basemaps: [ignBase, ignRaster, ignLidar, imagenBasemap, streetBasemap, terrenoBasemap, basemap]
         }, idDom);
 
-
-        // iniciamos el basemap y asignamos los mapas seleccionados
+        // iniciamos el basemap y añadimos el wmts y el blanco
         basemapGallery.startup();
-        basemapGallery.add(basemap);
-
+        //basemapGallery.add(basemap);
+        map.addLayer(Mapasbase.wmtsLayer);
     };
 
 }
