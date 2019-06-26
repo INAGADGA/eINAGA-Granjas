@@ -222,7 +222,7 @@
             id: "WMTSBaseMap.base.IGN",
             layers: [Mapasbase.wmtsLayer],
             title: "Base IGN",
-            thumbnailUrl: "images/thumbIGNBase.jpg"
+            thumbnailUrl: "images/imgIGNBase.jpg"
         });
 
         
@@ -250,7 +250,7 @@
             id: "WMTSBaseMap.raster.IGN",
             layers: [wmtsIGNRaster],
             title: "Raster IGN",
-            thumbnailUrl: "images/thumbIGNRaster.jpg"
+            thumbnailUrl: "images/imgIGNRaster.jpg"
         });
 
         var layerInfo3 = new esri.layers.WMTSLayerInfo({
@@ -277,7 +277,7 @@
             id: "WMTSBaseMap.lidar.IGN",
             layers: [wmtsIGNRLidar],
             title: "Lidar IGN",
-            thumbnailUrl: "images/thumbIGNLidar.jpg"
+            thumbnailUrl: "images/imgIGNLidar.jpg"
         });
 
         var layerInfo4 = new esri.layers.WMTSLayerInfo({
@@ -304,13 +304,13 @@
             id: "WMTSBaseMap.Orto.IGN",
             layers: [wmtsIGNOrto],
             title: "PNOA IGN",
-            thumbnailUrl: "images/thumbIGNOrto.jpg"
+            thumbnailUrl: "images/imgIGNOrto.jpg"
         });
 
         // mapabase en blanco
         var layer = new esri.dijit.BasemapLayer({ url: "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer" });
         layer.opacity = 0.0;
-        var basemap = new esri.dijit.Basemap({ layers: [layer], title: "Blanco", thumbnailUrl: "/images/thumbBlanco.jpg" });
+        var basemap = new esri.dijit.Basemap({ layers: [layer], title: "Blanco", thumbnailUrl: "/images/imgBlanco.jpg" });
 
         basemapGallery = new esri.dijit.BasemapGallery({
             showArcGISBasemaps: false,
