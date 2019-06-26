@@ -310,7 +310,7 @@
         // mapabase en blanco
         var layer = new esri.dijit.BasemapLayer({ url: "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer" });
         layer.opacity = 0.0;
-        var basemap = new esri.dijit.Basemap({ layers: [layer], title: "Blanco", thumbnailUrl: "/images/imgBlanco.jpg" });
+        var basemap = new esri.dijit.Basemap({ layers: [layer], title: "Blanco", thumbnailUrl: "images/imgBlanco.jpg" });
 
         basemapGallery = new esri.dijit.BasemapGallery({
             showArcGISBasemaps: false,
