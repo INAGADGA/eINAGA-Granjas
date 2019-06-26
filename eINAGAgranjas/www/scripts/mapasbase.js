@@ -222,7 +222,7 @@
             id: "WMTSBaseMap.base.IGN",
             layers: [Mapasbase.wmtsLayer],
             title: "Base IGN",
-            thumbnailUrl: "/images/thumbIGNBase.jpg"
+            thumbnailUrl: "images/thumbIGNBase.jpg"
         });
 
         
@@ -250,7 +250,7 @@
             id: "WMTSBaseMap.raster.IGN",
             layers: [wmtsIGNRaster],
             title: "Raster IGN",
-            thumbnailUrl: "/images/thumbIGNRaster.jpg"
+            thumbnailUrl: "images/thumbIGNRaster.jpg"
         });
 
         var layerInfo3 = new esri.layers.WMTSLayerInfo({
@@ -277,7 +277,7 @@
             id: "WMTSBaseMap.lidar.IGN",
             layers: [wmtsIGNRLidar],
             title: "Lidar IGN",
-            thumbnailUrl: "/images/thumbIGNLidar.jpg"
+            thumbnailUrl: "images/thumbIGNLidar.jpg"
         });
 
         var layerInfo4 = new esri.layers.WMTSLayerInfo({
@@ -304,7 +304,7 @@
             id: "WMTSBaseMap.Orto.IGN",
             layers: [wmtsIGNOrto],
             title: "PNOA IGN",
-            thumbnailUrl: "/images/thumbIGNOrto.jpg"
+            thumbnailUrl: "images/thumbIGNOrto.jpg"
         });
 
         // mapabase en blanco
