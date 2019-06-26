@@ -245,14 +245,14 @@
             resourceInfo: resourceInfo2,
             layerInfo: layerInfo2
         };  
-        var wmtsIGNRaster = new esri.layers.WMTSLayer("https://www.ign.es/wmts/mapa-raster", options2);
-        
+        var wmtsIGNRaster = new esri.layers.WMTSLayer("https://www.ign.es/wmts/mapa-raster", options2);        
         var ignRaster = new esri.dijit.Basemap({
             id: "WMTSBaseMap.raster.IGN",
             layers: [wmtsIGNRaster],
             title: "Raster IGN",
             thumbnailUrl: "/images/thumbIGNRaster.jpg"
         });
+
         var layerInfo3 = new esri.layers.WMTSLayerInfo({
             tileInfo: tileInfo,
             fullExtent: tileExtent,
@@ -280,6 +280,33 @@
             thumbnailUrl: "/images/thumbIGNLidar.jpg"
         });
 
+        var layerInfo4 = new esri.layers.WMTSLayerInfo({
+            tileInfo: tileInfo,
+            fullExtent: tileExtent,
+            initialExtent: tileExtent,
+            identifier: "OI.OrthoimageCoverage",
+            tileMatrixSet: "GoogleMapsCompatible",
+            format: "png",
+            style: "default"
+        });
+        var resourceInfo4 = {
+            version: "1.0.0",
+            layerInfos: [layerInfo4],
+            copyright: "IGN"
+        };
+        var options4 = {
+            serviceMode: "KVP",
+            resourceInfo: resourceInfo4,
+            layerInfo: layerInfo4
+        };
+        var wmtsIGNOrto = new esri.layers.WMTSLayer("https://www.ign.es/wmts/pnoa-ma", options4);
+        ignOrto = new esri.dijit.Basemap({
+            id: "WMTSBaseMap.Orto.IGN",
+            layers: [wmtsIGNOrto],
+            title: "PNOA IGN",
+            thumbnailUrl: "/images/thumbIGNOrto.jpg"
+        });
+
         // mapabase en blanco
         var layer = new esri.dijit.BasemapLayer({ url: "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer" });
         layer.opacity = 0.0;
@@ -289,7 +316,7 @@
             showArcGISBasemaps: false,
             map: map,
             //basemaps: [ignBase, ignRaster, ignLidar, topoBasemap, dkGreyBasemap, ltGreyBasemap, imagenBasemap, clarityBasemap, natGeoBasemap, streetBasemap, terrenoBasemap, oceanoBasemap, basemap]
-            basemaps: [ignBase, ignRaster, ignLidar, imagenBasemap, streetBasemap, terrenoBasemap, basemap]
+            basemaps: [ignBase, ignOrto,ignRaster, ignLidar, imagenBasemap, streetBasemap, terrenoBasemap, basemap]
         }, idDom);
 
         // iniciamos el basemap y añadimos el wmts y el blanco
