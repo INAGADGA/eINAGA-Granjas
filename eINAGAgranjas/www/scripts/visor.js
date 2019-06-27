@@ -85,8 +85,6 @@ function initializeEsriJS() {
             var _mapasBase = new Mapasbase();
             var _widgets = new Widgets();
 
-            //rutaServidor = "https://idearagondes.aragon.local:4063/arcgis/rest/services/INAGA";
-            //rutaServidor = "https://idearagon.aragon.es/servicios/rest/services/INAGA";
             customExtentAndSR = new esri.geometry.Extent(-300000, 4840000, 120000, 5280000, new esri.SpatialReference({ wkid: 3857 })); //= new esri.geometry.Extent(550000,4400000,825000,4770000, new esri.SpatialReference({wkid:25830}));
             var tituloVisor = "<center><b><font color='white'>Explotaciones Ganaderas</font></b></center>";
             $("#tituloVisor").html(tituloVisor);
@@ -99,15 +97,11 @@ function initializeEsriJS() {
             });
             map.disableKeyboardNavigation();
             
-
-            
-
             // widgets ------------------------------------------------------------------------------------------------------------------
             _widgets.cargaWidgets();
             // añade los mapas base al mapa
             var _mapasBse = new Mapasbase();
             _mapasBse.cargaMapasBase('basemapGallery');
-            //map.setBasemap(Mapasbase.ignLidar);
             // Capas necesarias -------------------------------------------------------------------------------------------------------------------------------------------------------------------
             _capas.addCapas2Visor();
             
@@ -196,7 +190,7 @@ function initializeEsriJS() {
                     _capas.cambiaVisibilidadOVC(true);
                 } else {
                     map.setInfoWindowOnClick(true);
-                    _capas.cambiaVisibilidadOVC(false);
+                    //_capas.cambiaVisibilidadOVC(false);
                 }
             });
 
@@ -212,8 +206,6 @@ function initializeEsriJS() {
             map.on("zoom-end", function () {
                 $("#escala").text("Escala 1:" + Number(map.getScale().toFixed(0)).toLocaleString('es'));
             });
-
-
 
             $("#clearGraphicsM").click(function () {
                 if (map) {
@@ -290,7 +282,6 @@ function initializeEsriJS() {
 
             basemapGallery.on("selection-change", function () {
                 map.removeLayer(Mapasbase.wmtsLayer);
-                //var basemap = basemapGallery.getSelected();
                 if (basemapGallery.getSelected().id.indexOf("WMTSBaseMap") !== -1) {
                     basemapGallery._removeBasemapLayers();
                     var l = basemapGallery.getSelected().layers[0];

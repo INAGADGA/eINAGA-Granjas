@@ -96,7 +96,7 @@
         gsvc.project(params, function (rtdos) {
             pt = rtdos[0];
             var urlCat = "https://ovc.catastro.meh.es/Cartografia/WMS/ServidorWMS.aspx?&REQUEST=GetFeatureInfo&VERSION=1.1.1&SRS=EPSG%3A25830&BBOX=" + pt.x + "," + pt.y + "," + (pt.x + 1) + "," + (pt.y + 1) + "&WIDTH=" + map.width + "&HEIGHT=" + map.height + "&X=" + layerx + "&Y=" + layery;
-            popup.setContent('<iframe style="float:left; height:30em; width:100%" src=' + urlCat + ' frameborder="0" scrolling="yes"></iframe>');
+            popup.setContent('<iframe style="float:left; height:30em; width:100%" src=' + urlCat + ' frameborder="0" scrolling="yes"></iframe><p>Quite del menú la opción de consulta OVC si quiere consultar la información de otras capas</p>');
             popup.setTitle("Información catastral");
             // dibujar y zoom a coordenada
             _graficos.addPoint4326(geom);

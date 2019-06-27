@@ -321,7 +321,7 @@
 
         // iniciamos el basemap y añadimos el wmts y el blanco
         basemapGallery.startup();
-        //basemapGallery.add(basemap);
+        //añadimos la capa de ign base de incio, en el evento de cambio de mapa base se eliminará
         map.addLayer(Mapasbase.wmtsLayer);
     };
 

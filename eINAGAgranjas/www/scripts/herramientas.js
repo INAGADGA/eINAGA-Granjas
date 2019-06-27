@@ -15,16 +15,14 @@
     this.visible = function (id, flag) {
         if (flag === 1) {
             $('#' + id).css('visibility', 'visible');
-            //document.getElementById(id).style.visibility = 'visible';
         }
         else if (flag === 0) {
             $('#' + id).css('visibility', 'hidden');
-            //document.getElementById(id).style.visibility = 'hidden';
         }
     };
 
     // Función para actualizar los text box de las búsquedas por coordenadas
-    this.actualizaCoordTextBox =function (pt, ptEtrs, abrirPanel) {
+    this.actualizaCoordTextBox = function (pt, ptEtrs, abrirPanel) {
         coordx = ptEtrs.x.toFixed(0);
         coordy = ptEtrs.y.toFixed(0);
         $("#CoordX").val(coordx);
@@ -37,7 +35,7 @@
             $("#collapCoordETRS").collapsible("expand");
             $("#collapCoordGEO").collapsible("expand");
         }
-    }
+    };
 
     /*
     * description devuelve la cadena formateada con la concatenación de las horas,minutos y segundos, para identificar los informes generados

@@ -116,7 +116,7 @@ function Capas() {
         Capas.layerCat.visible = true;
         Capas.layerCat.id = "OVC";
         Capas.layerCat.version = "1.1.1";
-        Capas.layerCat.spatialReferences[0] = 3857; //new esri.SpatialReference(3857);
+        Capas.layerCat.spatialReferences[0] = 3857; 
 
 
         var layerSigpacPar = new esri.layers.WMSLayerInfo({
@@ -158,7 +158,6 @@ function Capas() {
         wmsLayeriGN.visible = false;
         wmsLayeriGN.id = "IGN";
         wmsLayeriGN.version = "1.1.1";
-        //wmsLayeriGN.spatialReferences[0] = 3857;
 
         var capaVinilo = new esri.layers.GraphicsLayer({ "id": "Geodesic" });
 
@@ -294,13 +293,6 @@ function Capas() {
         // añade las capas al mapa
         map.addLayers([wmsLayeriGN, dynamicMSLayerMontes, dynamicMSLayerCotos, dynamicMSLayerFPA, dynamicMSLayerLimites, dynamicMSLayerGranjas, wmsSigpac, Capas.layerCat, capaVinilo]);
 
-    };
-
-    this.cambiaVisibilidadIGNBase = function (visible) {
-        //$('#checkCatastro').prop("checked", visible).checkboxradio('refresh');
-        Capas.layerWMTS.visible = visible;
-        Capas.layerWMTS.opacity = 0;
-        map.setExtent(map.extent);
     };
 
     this.cambiaVisibilidadOVC = function (visible) {

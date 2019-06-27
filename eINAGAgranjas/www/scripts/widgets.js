@@ -69,19 +69,7 @@
             map: map
         }, "search");
         var sources = search.get("sources");
-        sources.push({
-            //featureLayer: new esri.layers.FeatureLayer(rutaServidor + "/INAGA_Ambitos/MapServer/3"),
-            //searchFields: ["D_MUNI_INE"],
-            //displayField: "D_MUNI_INE",
-            //exactMatch: false,
-            //name: "Núcleo de población",
-            //outFields: ["*"],
-            //placeholder: "Núcleo de población",
-            //maxResults: 6,
-            //maxSuggestions: 6,
-            //enableSuggestions: true,
-            //minCharacters: 0
-
+        sources.push({            
             featureLayer: new esri.layers.FeatureLayer(rutaServidor + "/INAGA_Ambitos/MapServer/3"),
             searchFields: ["D_MUNI_INE"],
             displayField: "D_MUNI_INE",
@@ -93,7 +81,6 @@
             maxSuggestions: 6,
             enableSuggestions: true,
             minCharacters: 0
-
         });
         sources.push({
             featureLayer: new esri.layers.FeatureLayer(rutaServidor + "/INAGA_Ambitos/MapServer/5"),
@@ -137,8 +124,6 @@
         });
 
         search.set("sources", sources);
-        //s.sources[0].searchExtent = customExtentAndSR;
-        //s.sources[1].searchExtent = customExtentAndSR;
         search.startup();
     };
 
