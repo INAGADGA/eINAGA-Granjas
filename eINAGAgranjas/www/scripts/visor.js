@@ -45,6 +45,7 @@ function initializeEsriJS() {
         "esri/dijit/LocateButton",
         "esri/dijit/Measurement",
         "esri/dijit/Legend",
+        "esri/dijit/Attribution",
         "esri/geometry/Circle",
         "esri/geometry/normalizeUtils",
         "esri/tasks/BufferParameters",
@@ -59,7 +60,7 @@ function initializeEsriJS() {
     ], function (dom, domStyle, domConstruct, array, parser, query, on
         , Color, esriConfig, Map, Graphic, Draw
         , PopupMobile, SimpleMarkerSymbol, SimpleLineSymbol, SimpleFillSymbol,
-        OverviewMap, BasemapGallery, Basemap, BasemapLayer, Scalebar, Search, HomeButton, LocateButton, Measurement, Legend, Circle, normalizeUtils, BufferParameters
+        OverviewMap, BasemapGallery, Basemap, BasemapLayer, Scalebar, Search, HomeButton, LocateButton, Measurement, Legend, Attribution,Circle, normalizeUtils, BufferParameters
         , Query, FeatureLayer, WMSLayer, WMSLayerInfo, WMTSLayer, WMTSLayerInfo, TileInfo
     ) {
 
@@ -96,7 +97,9 @@ function initializeEsriJS() {
                 extent: customExtentAndSR
             });
             map.disableKeyboardNavigation();
-            
+            //var attribution = new Attribution({
+            //    map: map
+            //}, "attributionDiv");
             // widgets ------------------------------------------------------------------------------------------------------------------
             _widgets.cargaWidgets();
             // añade los mapas base al mapa

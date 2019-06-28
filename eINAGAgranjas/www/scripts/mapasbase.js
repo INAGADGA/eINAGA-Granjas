@@ -210,7 +210,7 @@
         var resourceInfo = {
             version: "1.0.0",
             layerInfos: [layerInfo],
-            copyright: "IGN"
+            copyright: "CC BY 4.0 www.scne.es"
         };
         var options = {
             serviceMode: "KVP",
@@ -238,7 +238,7 @@
         var resourceInfo2 = {
             version: "1.0.0",
             layerInfos: [layerInfo2],
-            copyright: "IGN"
+            copyright: "CC BY 4.0 ign.es"
         };
         var options2 = {
             serviceMode: "KVP",
@@ -265,7 +265,7 @@
         var resourceInfo3 = {
             version: "1.0.0",
             layerInfos: [layerInfo3],
-            copyright: "IGN"
+            copyright: "CC BY 4.0 http://www.scne.es/#Mapa-LiDAR"
         };
         var options3= {
             serviceMode: "KVP",
@@ -292,7 +292,7 @@
         var resourceInfo4 = {
             version: "1.0.0",
             layerInfos: [layerInfo4],
-            copyright: "IGN"
+            copyright: "Obra derivada de PNOA CC-BY http://www.scne.es/productos.html#OrtoPNOA"
         };
         var options4 = {
             serviceMode: "KVP",
