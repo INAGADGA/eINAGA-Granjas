@@ -24,6 +24,47 @@
         }
        
     };
+    
+
+
+    Queries.queryCapa = function queryCapa(miCapa, geom, filtro, fn, distancia, zoom, srs) {
+        if (distancia === undefined) {
+            distancia = 0;
+        }
+        if (zoom === undefined) {
+            zoom = true;
+        }
+        if (srs === undefined) {
+            srs = 3857;
+        }
+        var buffer;
+        //var fcConsulta = urlCapa;
+        //var queryTask = new esri.tasks.QueryTask(fcConsulta);
+        // comprobar si se ha pasado la geometría para realizar la consulta
+        buffer = geom;
+        if (geom !== null && distancia > 0) { // si se ha pasado distancia realizar buffer geodésico
+            buffer = geometryEngine.geodesicBuffer(geom, parseInt(distancia), 9001);
+        }
+
+        var query = new esri.tasks.Query();
+        query.returnGeometry = true;
+        query.outFields = ["*"];
+        // si no se ha pasado geometría realizar la búsqueda sólo con el filtro
+        if (geom !== null) {
+            query.geometry = buffer;
+        }
+        query.where = filtro;
+        query.outSpatialReference = new esri.SpatialReference({ wkid: srs });
+        //queryTask.execute(query,function (results) {
+        //    var rtdo = results;
+        //    fn(rtdo);
+        //});
+
+        miCapa.queryFeatures(query, function (results) {
+            var rtdo = results;
+            fn(rtdo);
+        });
+    };
 
     /*
     * Función que retorna la información en html del resultado del análisis de impacto en la coordenada seleccionada

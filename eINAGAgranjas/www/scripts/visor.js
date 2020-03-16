@@ -47,6 +47,7 @@ function initializeEsriJS() {
         "esri/dijit/Legend",
         "esri/dijit/Attribution",
         "esri/geometry/Circle",
+        "esri/geometry/Point",
         "esri/geometry/normalizeUtils",
         "esri/tasks/BufferParameters",
         "esri/tasks/query",
@@ -60,7 +61,7 @@ function initializeEsriJS() {
     ], function (dom, domStyle, domConstruct, array, parser, query, on
         , Color, esriConfig, Map, Graphic, Draw
         , PopupMobile, SimpleMarkerSymbol, SimpleLineSymbol, SimpleFillSymbol,
-        OverviewMap, BasemapGallery, Basemap, BasemapLayer, Scalebar, Search, HomeButton, LocateButton, Measurement, Legend, Attribution,Circle, normalizeUtils, BufferParameters
+        OverviewMap, BasemapGallery, Basemap, BasemapLayer, Scalebar, Search, HomeButton, LocateButton, Measurement, Legend, Attribution, Circle, Point, normalizeUtils, BufferParameters
         , Query, FeatureLayer, WMSLayer, WMSLayerInfo, WMTSLayer, WMTSLayerInfo, TileInfo
     ) {
 
@@ -109,6 +110,35 @@ function initializeEsriJS() {
             _capas.addCapas2Visor();
             
             //Eventos -------------------------------------------------------------------------------------------------------------------------------------------------------------------
+            $("#busquedaGranja").click(function () {
+                // limpiaResultados anteriores;
+                $('#listadoRegas').empty();
+                var filtro = "EXPLOTACION = '" + $("#explotacion").val().trim() + "'";
+                Queries.queryCapa(Capas.fcGranjasProduccion, null, filtro, muestraConsulta, 0, true, 4326);
+            });
+            function muestraConsulta() {
+                if (arguments[0].features.length > 0) {
+                    $("#labelSubexplotaciones").html("Subexplotaciones:");
+                    for (var i = 0; i < arguments[0].features.length; i++) {
+                        var recinto = arguments[0].features[i];
+                        var capacidad = recinto.attributes['CAPACIDAD'] ? recinto.attributes['CAPACIDAD'] : 0;
+                        var especie = recinto.attributes['ESPECIE'];
+                        var li = '<a href="#" title="Zoom a la subexplotación" class="mainLink"><h5>Especie: ' + especie + ' -- Capacidad: ' + capacidad + '</h5></a>';
+                        var item = '<li data-icon="location" data-x=' + recinto.geometry.x +
+                            ' data-y=' + recinto.geometry.y + '\>' + li + '</li>';
+                        $('#listadoRegas').append(item).listview('refresh');
+                    }
+                }
+                else {
+                    $("#labelSubexplotaciones").html("No existen explotaciones con ese código");
+                }
+            }
+            $('#listadoRegasContenedor').on('click', 'li', function () {
+                var x = $(this)[0].attributes['data-x'].value;
+                var y = $(this)[0].attributes["data-y"].value;
+                var pt = new Point(x, y, new esri.SpatialReference({ wkid: 4326 })); 
+                map.centerAndZoom(pt, 18);                
+            });
             popup.on("selection-change", function () {
                 graphico = popup.getSelectedFeature();
             });

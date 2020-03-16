@@ -110,6 +110,18 @@
                     <div id="etrs"></div>
                     <button type="button" id="clearGraphicsM">Borra medición</button>
                 </div>
+                <div data-role="collapsible" id="colapseCat" data-inset="true" data-mini="true" data-iconpos="right" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d">
+                    <h3>Localización explotación REGA</h3>
+                    <label for="explotacion" data-mini="true"><b>Código Explotación:</b></label>
+                    <input type="text" data-mini="true" id="explotacion" />
+                    <input type="button" value="Búsqueda" id="busquedaGranja" data-icon="search" data-mini="true" data-iconpos="right" data-inline="false" title="Buscar" />
+                    <div id="listadoRegasContenedor">
+                        <p></p>
+                        <label id="labelSubexplotaciones" for="listadoRegas" data-mini="true"></label>
+                        <!--h5 id="labelSubexplotaciones"></h5-->
+                        <ul id="listadoRegas" data-mini="true" data-role="listview" data-inset="true"></ul>
+                    </div>
+                </div>
                 <div data-role="collapsible" data-inset="true" data-mini="true" data-iconpos="right" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d">
                     <h3>Capas</h3>
                     <form action="" method="get">
@@ -128,7 +140,7 @@
                             <input type="checkbox" name="checkboxenp" id="checkboxenp" data-mini="true"><label for="checkboxenp">Espacios Naturales Protegidos (ENP)</label>
                             <input type="checkbox" name="checkboxporn" id="checkboxporn" data-mini="true"><label for="checkboxporn">PORN</label>
                             <input type="checkbox" name="checkboxacrit" id="checkboxacrit" data-mini="true"><label for="checkboxacrit">Áreas críticas especies amenazadas</label>
-                            <input type="checkbox" name="checkboxappe" id="checkboxappe" data-mini="true"><label for="checkboxappe">Ámbitos de protección especies amenazadas</label>                            
+                            <input type="checkbox" name="checkboxappe" id="checkboxappe" data-mini="true"><label for="checkboxappe">Ámbitos de protección especies amenazadas</label>
                         </fieldset>
                     </form>
                 </div>

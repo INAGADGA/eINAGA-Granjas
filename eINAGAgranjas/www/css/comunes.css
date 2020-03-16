@@ -77,6 +77,14 @@ body {
             left: 19px;
             z-index: 30
         }
+.ui-listview > li h5 {
+    font-size: 0.8em !important;
+}
+.ui-listview-inset > li > a.ui-btn {
+    border-right-width: 1px;
+    border-left-width: 1px;
+    font-size: 0.8em !important;
+}
 
 .HomeButton .home {
     width: 40px; 

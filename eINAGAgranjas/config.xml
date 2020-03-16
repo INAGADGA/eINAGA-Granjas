@@ -3,7 +3,6 @@
   <name>eINAGA-Granjas</name>
   <description>Consulta-análisis de explotaciones ganaderas e informes de distancias y saturación en Aragón</description>
   <author href="http://cordova.io" email="dev@cordova.apache.org">Su nombre aquí</author>
-  <vs:is-from-base-template>true</vs:is-from-base-template>
   <vs:template-name>BlankJS</vs:template-name>
   <vs:toolsetVersion>6.3.1</vs:toolsetVersion>
   <engine name="android" spec="5.2.1" />
